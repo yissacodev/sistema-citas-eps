@@ -1,0 +1,338 @@
+/*Hoja de estilos de ocmponentes personalizados*/
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../font/Roboto-Bold.ttf');
+}
+
+:root{
+    --blue-confamiliar: #1b3f7d;
+    --gray-confamiliar: #cccccc;
+    --white-comfamiliar: #fafafa;
+    --area-color-comfamiliar: #28a745;
+    --box-shadow-components: 2px 2px 2px 2px var(--gray-confamiliar);
+    --black-comfamiliar: #2e2e2e;
+    
+    /*Areas*/
+    --general: #28a745;
+    --odontology: #04417a;
+    --cardiology: #9b1d1e;
+    --psychology: #553BD0;
+    --endocrinology: #130f4d;
+    --nutrition: #39e6ec;
+    --urology: #b1ae0a;
+    --nephrology: #552f2f;
+    --gynecology: #863665;
+    --neumology: #ffa8cc;
+    --otorhinolaryngology: #3d073f;
+    --ophthalmology: #4e9afd;
+    --phonology: #2156b8;
+
+}
+
+.area-color__gnral{
+    --area-color-comfamiliar: var(--general);
+}
+
+.area-color__odo{
+    --area-color-comfamiliar: var(--odontology);
+}
+.area-color__psi{
+    --area-color-comfamiliar: var(--psychology);
+}
+
+.area-color__car{
+    --area-color-comfamiliar: var(--cardiology);
+}
+
+.area-color__endo{
+    --area-color-comfamiliar: var(--endocrinology);
+    color: var(--white-comfamiliar);
+}
+
+.area-color__nut{
+    --area-color-comfamiliar: var(--nutrition)
+}
+.area-color__uro{
+    --area-color-comfamiliar: var(--urology)
+}
+.area-color__nephro{
+    --area-color-comfamiliar: var(--nephrology);
+    color: var(--white-comfamiliar);
+}
+.area-color__gyneco{
+    --area-color-comfamiliar: var(--gynecology)
+}
+.area-color__neumo{
+    --area-color-comfamiliar: var(--neumology)
+}
+.area-color__otorhino{
+    --area-color-comfamiliar: var(--otorhinolaryngology);
+    color: var(--white-comfamiliar);
+}
+.area-color__ophtha{
+    --area-color-comfamiliar: var(--ophthalmology)
+}
+.area-color__phon{
+    --area-color-comfamiliar: var(--phonology)
+}
+
+.welcome{
+    background-color: var(--blue-confamiliar);
+    box-shadow: var(--box-shadow-components);
+    /* border: 0.2em solid var(--gray-confamiliar); Comentar luego */
+    border-radius: 0.6em;
+}
+
+.welcome__show{
+    background-color: var(--area-color-comfamiliar);
+    box-shadow: var(--box-shadow-components);
+    /* border: 0.2em solid var(--gray-confamiliar); Comentar luego */
+    border-radius: 0.6em;
+}
+
+.welcome_title{
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--white-comfamiliar);
+}
+.welcome_text{
+    font-size: 1em;    
+    color: var(--white-comfamiliar);
+}
+
+
+.cite-notify{
+    user-select: none;
+    transition: transform 0.5s ease-in-out;
+}
+
+.cite-notify:hover{
+    transform: scale(1.009);
+}
+
+
+.cite_header{
+    font: bold calc(1.0em + 0.5vw) 'Roboto-Bold';
+    text-align: center;
+    color: var(--area-color-comfamiliar);
+    border-radius: 0.6em;
+    border: 0.15em solid var(--area-color-comfamiliar);
+    margin-bottom: 0.2em;
+    padding: 0.18em;
+    
+}
+
+.cite_area{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: var(--area-color-comfamiliar);
+    border-radius: 1.2em;
+    height: 80%;
+}
+
+.cite_area-text{
+    font: bold 1.4em 'Roboto-Bold';
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--white-comfamiliar);
+}
+
+.info-container{
+    border-radius: 0.6em;
+    border: 0.25em solid var(--area-color-comfamiliar);
+}
+
+.info-header{
+    font: bold calc(1.0em + 0.5vw) 'Roboto-Bold';
+    text-align: center;
+    color: var(--white-comfamiliar);
+    border-radius: 0.6em;
+    border: 0.15em solid var(--area-color-comfamiliar);
+    background-color: var(--area-color-comfamiliar);
+    margin-bottom: 0.2em;
+    padding: 0.18em;
+    
+}
+
+.info-cite{
+    text-align: left;
+    
+    margin-bottom: 0.2em;
+    height: 100%;
+}
+
+.info-table{
+    width: 100%;
+}
+
+.info-title{
+    padding-left: 0.4em;
+    color: var(--white-comfamiliar);
+    background: var(--area-color-comfamiliar);;
+    border-radius: 0.6em;
+    /* border: 0.15em solid var(--area-color-comfamiliar); */
+    background: -moz-linear-gradient(90deg, var(--area-color-comfamiliar) 58%, rgba(250,250,250,1) 100%);
+    background: -webkit-linear-gradient(90deg, var(--area-color-comfamiliar) 58%, rgba(250,250,250,1) 100%);
+    background: linear-gradient(90deg, var(--area-color-comfamiliar) 30%, rgba(250,250,250,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#28a745",endColorstr="#fafafa",GradientType=1); 
+}
+.info-desc{
+    padding-left: 0.4em;
+}
+
+/*---------------------------------------------------------------------------*/
+.area-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    height: 200px;
+    margin: 0 auto;
+    background-color: var(--area-color-comfamiliar);
+    box-shadow: 0px 5px 10px 4px #555;
+    transition: transform ease-in-out 0.3s;
+    z-index: 3;
+}
+.area-card:hover{
+    transform: scale(1.04);
+}
+/* .card-desc{
+    position: absolute;
+    top: 180px;
+    background-color: var(--white-comfamiliar);
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    transition: bottom 0.3s ease-in;
+} */
+
+
+.card-icon{
+    color: var(--white-comfamiliar);
+    font-size: 4em;
+}
+
+.card-text{
+    font: bold calc(1.0em + 0.5vw) 'Roboto-Bold';
+    color: var(--white-comfamiliar);
+}
+
+.modal-header__color{
+    background-color: var(--blue-confamiliar);
+}
+
+.modal-title{
+    font: bold calc(1.0em + 0.5vw) 'Roboto-Bold';    
+    color: var(--white-comfamiliar);
+}
+
+.card-overflow-x{
+    overflow-x: scroll;
+}
+
+
+.button-action{
+    position: relative;
+}
+
+.bt-tooltip{
+    position: absolute;
+    display: none;
+    bottom: 22px;
+    left: -36px;
+    background: var(--black-comfamiliar);
+    width: 87px;
+    height: 48px;
+    padding: 0.3em;
+    border-radius: 4px;
+    text-align: center;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 59% 75%, 52% 100%, 44% 75%, 0% 75%);
+}
+.bt-tooltip{
+    color: var(--white-comfamiliar);
+}
+
+.button-action:hover .bt-tooltip{
+    display: block;
+}
+
+.medarea-color{
+    vertical-align: middle !important;
+    text-align: center;
+    background-color: var(--area-color-comfamiliar);
+}
+.medarea-icon-png{
+    width: 70px;
+}
+.data-profile-cover{
+    height: 200px;
+}
+
+.data-profile-img{
+    width: 120px;
+    height: 120px;
+    margin-right: 5px;
+    color: var(--area-color-comfamiliar);
+    border: 5px solid currentColor;
+    border-radius: 50%;
+}
+
+.data-profile{
+    position: relative;
+    top: 105px;
+}
+.data-profile-name{
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--white-comfamiliar);
+}
+
+.form-personal{
+
+}
+
+.form-title{
+    font-weight: bold;
+}
+.card-form{
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--white-comfamiliar);
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    
+}
+
+
+/*--------------------------------------------------------------*/
+@media screen and (max-width: 768px){
+    .info-header{
+        display: none;
+    }
+
+    .return-button{
+        position: absolute;
+        top: -60%;
+    }
+    .data-profile-cover{
+        height: 250px;
+    }
+    
+}
+
+
+/* .suggestion{
+    font: bold 1em 'Roboto-Bold';
+    text-align: center;
+    color: var(--white-comfamiliar);
+    border-radius: 0.6em;
+    border: 0.15em solid var(--area-color-comfamiliar);
+    background-color: var(--area-color-comfamiliar);
+    margin-bottom: 0.2em;
+    padding: 0.18em;
+    
+} */
+
