@@ -8,9 +8,9 @@
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
-                    <tr class="table-header">
+                    <tr>
                         <th>Distintivo</th>
-                        <th>Id de área</th>
+                        <th>id de área</th>
                         <th>Nombre</th>
                         <th>Especialista</th>
                         <th>Descripción</th>
@@ -18,13 +18,13 @@
         
                     </tr>
                 </thead>
-                <tbody class="table-body">
+                <tbody>
                     @foreach ($medicalareas as $medicalarea)
-                    <tr class="table-row">
+                    <tr>
                         @if(!str_starts_with($medicalarea->color_area, '#'))
-                            <td class="medarea-color {{$medicalarea->color_area}} table-data" data-label="Distintivo">
+                            <td class="medarea-color {{$medicalarea->color_area}}">
                         @else
-                            <td class="medarea-color table-data" data-label="Distintivo" style="background-color: {{$medicalarea->color_area}}">
+                            <td class="medarea-color" style="background-color: {{$medicalarea->color_area}}">
                         @endif
 
 
@@ -38,10 +38,10 @@
 
                             </td>
                         
-                        <td data-label="Id de área" class="table-data">{{$medicalarea->id_area}}</td>
-                        <td data-label="Nombre" class="table-data">{{$medicalarea->name_area}}</td>
-                        <td data-label="Especialista" class="table-data">{{$medicalarea->specialist_area}}</td>
-                        <td data-label="Descripción" class="table-data"><p class="medarea-desc">{{$medicalarea->desc_area}}</p></td>
+                        <td>{{$medicalarea->id_area}}</td>
+                        <td>{{$medicalarea->name_area}}</td>
+                        <td>{{$medicalarea->specialist_area}}</td>
+                        <td>{{$medicalarea->desc_area}}</td>
 
                     
                         {{-- <td>

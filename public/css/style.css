@@ -91,19 +91,15 @@
 }
 
 .welcome_title{
-    font-size: calc(1.5em + 1vw);
+    font-size: 2.5em;
     font-weight: bold;
     color: var(--white-comfamiliar);
 }
 .welcome_text{
-    font-size: calc(0.8em + 0.2vw);
+    font-size: 1em;    
     color: var(--white-comfamiliar);
 }
 
-.btn_add{
-    font-size: calc(0.8em + 0.2vw);
-    min-width: 7em;
-}
 
 .cite-notify{
     user-select: none;
@@ -310,10 +306,6 @@
     
 }
 
-.table-row-options{
-    width:auto;
-}
-
 
 /*--------------------------------------------------------------*/
 @media screen and (max-width: 768px){
@@ -328,36 +320,7 @@
     .data-profile-cover{
         height: 250px;
     }
-    .table-body{
-        display: flex;
-        flex-flow: column;
-    }
-    .table-header{
-        display: none;
-    }
-    .table-row{
-        display: flex;
-        flex-flow: nowrap column;
-        margin-bottom: 1em;
-    }
-    .table-row td::before{
-        content: attr(data-label);
-        font-weight: bold;
-        width: 6em;
-    }
-    .table-data{
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .medarea-color{
-        text-align: left;
-        color: #fefefe;
-    }
-
-    .medarea-desc{
-        width: 50%;
-    }
+    
 }
 
 

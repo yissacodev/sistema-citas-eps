@@ -61,7 +61,7 @@
     <div class="row">
         <div class="form-group col-6">
             <label for="name">Nombres</label>
-            <input type="text" name="name" id="name" class="form-control" 
+            <input type="text" name="name" id="name" class="form-control"
             pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
             <div class="valid-feedback">Campo correcto</div>
             <div class="invalid-feedback">Campo incorrecto</div>
