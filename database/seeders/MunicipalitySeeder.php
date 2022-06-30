@@ -16,20 +16,23 @@ class MunicipalitySeeder extends Seeder
      */
     public function run()
     {
-        $municipalities = [
+        $municipalities = [/*
             [
                 'id_municipality' => '4',
                 'municipality_name' => 'Acevedo',
                 'department' => '41',
-                'municipality_status' => '1',
             ],
             [
                 'id_municipality' => '126',
                 'municipality_name' => 'Buesaco',
                 'department' => '52',
-                'municipality_status' => '1',
+            ],
+            [
+                'id_municipality' => '001',
+                'municipality_name' => 'Pasto',
+                'department' => '52',
             ]
-        ];
+        */];
         foreach ($municipalities as $municipality) {
             Municipality::create($municipality);
         }

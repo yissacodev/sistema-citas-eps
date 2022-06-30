@@ -24,6 +24,7 @@
     <div class="container-fluid d-flex flex-column justify-content-center"> <!--75-->
     <h4>Información básica</h4>
 
+<<<<<<< Updated upstream
         <div class="row flex-sm-row flex-column">
             <div class="form-group col-sm-6 col-12">
                 <label for="idtype">Tipo de identificación</label>
@@ -39,6 +40,86 @@
                 <label for="idnumber">N° Identificación</label>
                 <input type="text" name="idnumber" id="idnumber" class="form-control" pattern="[0-9]*" required>
             </div>
+=======
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="idtype">Tipo de identificación</label>
+            <select type="text" name="idtype" id="idtype" class="form-control" required>
+                @foreach ($idtypes as $idtype)
+                    <option value="{{$idtype->id_type}}">
+                        {{$idtype->name_type}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="idnumber">N° Identificación</label>
+            <input type="text" name="idnumber" id="idnumber" class="form-control" pattern="[0-9]*" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="name">Nombres</label>
+            <input type="text" name="name" id="name" class="form-control" 
+            pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
+            <div class="valid-feedback">Campo correcto</div>
+            <div class="invalid-feedback">Campo incorrecto</div>
+        </div>
+        <div class="form-group col-6">
+            <label for="last">Apellidos</label>
+            <input type="text" name="last" id="last" class="form-control"
+            pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
+        </div>
+
+    </div>
+    <div class="row mb-3">
+        <div class="form-group col-4">
+            <label for="birth">Fecha de nacimiento</label>
+            <input type="date" name="birth" id="birth" class="form-control" required>
+        </div>
+        <div class="form-group col-2">
+            <label for="stratrum">Estrato</label>
+            <input type="number" name="stratrum" id="stratrum" class="form-control" required>
+        </div>
+        <div class="form-group col-2">
+            <label for="sex">Sexo</label>
+            <select type="text" name="sex" id="sex" class="form-control" required>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+            </select>
+        </div>
+    </div>
+
+    <h4>Ubicación</h4>
+
+    <div class="row mb-3">
+        <div class="form-group col-3">
+            <label for="department">Departamento</label>
+            <select type="text" name="department" id="department" class="form-control" required>
+                @foreach ($departments as $department)
+                    <option value="{{$department->id_department}}">
+                        {{$department->department_name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group col-3">
+            <label for="municipality" class="form-label">Municipios</label>
+            <select class="form-control" id="municipality" name="municipality">
+                @foreach($municipalities as $municipality)
+                    <option value="{{$municipality->id_municipality}}">
+                        {{$municipality->municipality_name}}
+                    </option>
+                @endforeach
+            </select>
+
+        </div>
+        <div class="form-group col-3">
+            <label for="neigh">Barrio</label>
+            <input type="text" name="neigh" id="neigh" class="form-control"
+            pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
+>>>>>>> Stashed changes
         </div>
     
         <div class="row flex-sm-row flex-column">
@@ -55,6 +136,7 @@
                 pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
             </div>
         </div>
+<<<<<<< Updated upstream
         
         <div class="row mb-3">
             <div class="form-group col-md-4 col-sm-4 col-12">
@@ -72,6 +154,16 @@
                     <option value="F">Femenino</option>
                 </select>
             </div>
+=======
+    </div>
+
+    <h4>Información de contacto</h4>
+    <div class="row mb-3">
+        <div class="form-group col-4">
+            <label for="email">E-mail</label>
+            <input type="text" name="email" id="email" class="form-control"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+>>>>>>> Stashed changes
         </div>
     
         <h4>Ubicación</h4>

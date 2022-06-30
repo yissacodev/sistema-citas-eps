@@ -81,7 +81,7 @@ class MedicController extends Controller
             $user->roles()->sync('2');
 
             $user = User::where('email', $request->email)->first();
-        
+
             $medic->id_user = $user->id;
             $medic->idtype =           $request->idtype;
             $medic->identify_medic = $request->idnumber;
@@ -110,11 +110,11 @@ class MedicController extends Controller
             $medic->desc_medic         = $request->desc;
             $medic->save();
 
-            
+
             notify()->success('Laravel Notify is awesome!'); /*Notificacion de aprobación */
             return view('admin.medics.medic');
         } else {
-            
+
             return 'Cuenta ya existe';
         }
     }
@@ -177,7 +177,7 @@ class MedicController extends Controller
 
     public function deleteMedic(Request $request, $id_medic){
         $medic = Medic::findOrFail($id_medic);
-        
+
         if($medic->id_medic){
 			$user = User::where('email', $medic->email_medic)->first();
             $user->delete();

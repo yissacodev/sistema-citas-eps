@@ -15,7 +15,7 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        $patients = [
+        $patients = [/*
             [   'idtype' => '1',
                 'identify_patient' => '23432123',
                 'id_user' => '70',
@@ -51,7 +51,7 @@ class PatientSeeder extends Seeder
                 'cel_patient' => '3125556677',
                 'status_patient' => true,
                 'desc_patient' => 'Lorem ipsum'],
-        ];
+        */];
 
         
         foreach ($patients as $patient){

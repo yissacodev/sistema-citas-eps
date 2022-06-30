@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('genre_patient', '1'); /*Se debe listar M o F*/
             $table->date('birth_patient');
             $table->string('social_strat_patient', '1');
-        
-            $table->foreignId('department_patient')->references('id_department')->on('departments');
-            $table->foreignId('municipality_patient')->references('id_municipality')->on('municipalities');
+
+            $table->char('id_department', 5);
+            $table->char('id_municipality', 2);
             $table->string('neigh_patient', '50');
             $table->string('home_address_patient', '50');
             $table->string('email_patient', '50');
@@ -35,8 +35,8 @@ return new class extends Migration
             $table->boolean('status_patient', '1');
             $table->text('desc_patient')->nullable();
 
-            
-            
+
+
             $table->timestamps();
         });
     }

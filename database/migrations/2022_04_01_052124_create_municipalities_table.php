@@ -15,20 +15,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('municipalities', function (Blueprint $table) {
-            $table->id('id_municipality');
+            $table->char('id_municipality', 5);
             $table->string('municipality_name', 30);
-            // $table->unsignedInteger('department');
-            $table->foreignId('department')->references('id_department')->on('departments');
-            $table->unsignedInteger('municipality_status');
+            $table->char('id_department', 5);
             $table->timestamps();
         });
     }
-    /*https://laravel.com/docs/9.x/migrations#column-modifiers */
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('municipalities');
