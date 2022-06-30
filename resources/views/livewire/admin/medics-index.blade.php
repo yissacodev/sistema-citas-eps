@@ -7,7 +7,7 @@
         @if($medics->count())
         <div class="card-body">
             <table class="table table-striped">
-                <thead>
+                <thead class="table-header">
                     <tr>
                         <th>N° id</th>
                         <th>Nombre</th>
@@ -24,13 +24,13 @@
                         <th></th> --}}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-body">
                     @foreach ($medics as $medic)
-                    <tr>
-                        <td>{{$medic->identify_medic}}</td>
-                        <td>{{$medic->name_medic}}</td>
-                        <td>{{$medic->last_medic}}</td>
-                        <td>{{$medic->email_medic}}</td>
+                    <tr class="table-row">
+                        <td data-label="N° id" class="table-data">{{$medic->identify_medic}}</td>
+                        <td data-label="Nombre" class="table-data">{{$medic->name_medic}}</td>
+                        <td data-label="Apellido" class="table-data">{{$medic->last_medic}}</td>
+                        <td data-label="Email" class="table-data">{{$medic->email_medic}}</td>
 
                     
                         {{-- <td>{{$medic->birth_medic}}</td>
@@ -42,24 +42,26 @@
                         <td>
                            
                         </td> --}}
-                        <td>
-                            {{-- <a class="btn btn-primary" href="{{route('admin.users.edit', $user)}}">Editar</a> --}}
-                            <a class="button-action mr-2" href="{{route('admin.medics.show',  $medic->id_medic)}}" title="Detalles">
-                                <i class="fas fa-eye"></i>
-                                <div class="bt-tooltip">Detalles</div>
-                            </a>
-                            <a class="button-action text-success mr-2" href="{{route('admin.medics.edit', $medic->id_medic)}}" title="Editar">
-                                <i class="fas fa-pencil-alt"></i>
-                                <div class="bt-tooltip">Editar</div>
-                            </a>
-                            <form action="{{route('admin.medics.delete', $medic->id_medic)}}" method="POST" style="display:inline">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button class="btn btn-danger button-action" type="submit"  title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                    <div class="bt-tooltip">Eliminar</div>
-                                </button>
-                            </form>
+                        <td data-label="Opciones"class="table-data">
+                            <div class="table_row_options">
+                                {{-- <a class="btn btn-primary" href="{{route('admin.users.edit', $user)}}">Editar</a> --}}
+                                <a class="button-action mr-2" href="{{route('admin.medics.show',  $medic->id_medic)}}" title="Detalles">
+                                    <i class="fas fa-eye"></i>
+                                    <div class="bt-tooltip">Detalles</div>
+                                </a>
+                                <a class="button-action text-success mr-2" href="{{route('admin.medics.edit', $medic->id_medic)}}" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    <div class="bt-tooltip">Editar</div>
+                                </a>
+                                <form action="{{route('admin.medics.delete', $medic->id_medic)}}" method="POST" style="display:inline">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-danger button-action" type="submit"  title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                        <div class="bt-tooltip">Eliminar</div>
+                                    </button>
+                                </form>
+                            </div>
                             
                         </td>
                     </tr>

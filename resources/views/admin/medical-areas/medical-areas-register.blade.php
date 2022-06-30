@@ -4,11 +4,11 @@
 @section('content_header')
 <div class="container-fluid welcome">
     <div class="row p-3 d-flex justify-content-center align-items-center">
-        <div class="col-10 fw-bold">
+        <div class="col-sm-10 col-12 fw-bold">
             <h2 class="welcome_title">Inscripción de especialidades o áreas médicas</h2>
             <p class="welcome_text">Llene el siguiente formulario para crear una área médica</p>
         </div>
-        <a href="{{route('admin.specializations')}}" type="button" class="btn btn-success col-2">
+        <a href="{{route('admin.specializations')}}" type="button" class="btn btn-success col-4 col-sm-2">
             <i class="fas fa-arrow-left mr-2"></i>
             Regresar
         </a>

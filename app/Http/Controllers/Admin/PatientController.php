@@ -19,9 +19,13 @@ class PatientController extends Controller
 
     public function index()
     {
-        return view('admin.patients.patients');
+        return view('admin.patients.patients')
+            ->with('idtypes', IdType::all())
+            ->with('departments', Department::all())
+            ->with('municipalities', Municipality::all());
     }
 
+    /*Eliminar la vista de registrar y hacer todo en una ventana modal*/
     public function register() {
         return view('admin.patients.patient-register')
             ->with('idtypes', IdType::all())
