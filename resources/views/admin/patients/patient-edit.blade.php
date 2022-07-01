@@ -73,7 +73,7 @@
         <div class="form-group col-2">
             <label for="stratrum">Estrato</label>
             <input type="number" name="stratrum" id="stratrum" class="form-control"
-                value="{{$patient->social_strat_patient}}" required>
+                value="{{$patient->social_strat_patient}}" min="0" max="6" required>
         </div>
         <div class="form-group col-2">
             <label for="sex">Sexo</label>

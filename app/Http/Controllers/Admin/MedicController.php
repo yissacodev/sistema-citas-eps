@@ -114,7 +114,6 @@ class MedicController extends Controller
             notify()->success('Laravel Notify is awesome!'); /*Notificacion de aprobación */
             return view('admin.medics.medic');
         } else {
-            
             return 'Cuenta ya existe';
         }
     }

@@ -57,7 +57,7 @@
                                 <form action="{{route('admin.patients.delete', $patient->id_patient)}}" method="POST" style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
-                                    <button class="btn btn-danger button-action" type="submit"  title="Eliminar">
+                                    <button class="btn btn-danger button-action" type="submit" title="Eliminar">
                                         <i class="fas fa-trash"></i>
                                         <div class="bt-tooltip">Eliminar</div>
                                     </button>

@@ -12,6 +12,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use JeroenNoten\LaravelAdminLte\View\Components\Widget\Alert;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 class PatientController extends Controller
@@ -20,7 +22,7 @@ class PatientController extends Controller
     public function index()
     {
         return view('admin.patients.patients')
-            ->with('idtypes', IdType::all())
+            ->with('id_types', IdType::all())
             ->with('departments', Department::all())
             ->with('municipalities', Municipality::all());
     }
@@ -36,7 +38,6 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::where('id_patient', $id)->first();
-
         $idtype = Idtype::where('id_type', $patient->idtype)->first()->name_type;
         $department = Department::where('id_department', $patient->department_patient)->first()->department_name;
         $municipality = Municipality::where('id_municipality', $patient->municipality_patient)->first()->municipality_name;
@@ -91,10 +92,19 @@ class PatientController extends Controller
             $user->save();
 
             $user->roles()->sync('2');
-            notify()->success('Laravel Notify is awesome!'); /*Notificacion de aprobación */
-            return view('admin.patients.patients');
+            //notify()->success('Laravel Notify is awesome!'); /*Notificacion de aprobación */
+            Cache::flush();
+            // return view('admin.patients.patients')
+            //         ->with('id_types', IdType::all())
+            //         ->with('departments', Department::all())
+            //         ->with('municipalities', Municipality::all());
+
+
+            return redirect()->back();
         } else {
-            notify()->success('Laravel Notify is awesome!');
+            Cache::flush();
+            return redirect()->back();
+            //notify()->success('Laravel Notify is awesome!');
         }
     }
 
@@ -142,8 +152,9 @@ class PatientController extends Controller
         $patient->status_patient       = true;
         $patient->desc_patient         = $request->desc;
         $patient->save();
-
-        return view('admin.patients.patients');
+        Cache::flush();
+        return redirect()->back();
+        // return view('admin.patients.patients');
         // } else {
         notify()->success('Laravel Notify is awesome!');
         // }
@@ -157,7 +168,10 @@ class PatientController extends Controller
 			$user = User::where('email', $patient->email_patient)->first();
             $user->delete();
 			$patient->delete();
-            return view('admin.patients.patients');
+            Cache::flush();
+
+            return redirect()->back();
+            // return view('admin.patients.patients');
         }
     }
 }
