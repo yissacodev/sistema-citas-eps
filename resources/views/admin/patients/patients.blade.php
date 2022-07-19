@@ -6,7 +6,7 @@
         <div class="col-md-10 col-12 fw-bold">
             <h2 class="welcome_title">Pacientes</h2>
             <p class="welcome_text">En esta sección están listados todos los pacientes afiliados a la EPS</p>
-            <p class="welcome_text m-0">Usted puede buscar paciente digitando su cédula, nombré, apellido o cualquier
+            <p class="welcome_text m-0">Usted puede buscar paciente digitando su cédula, nombre, apellido o cualquier
                 dato</p>
             <p class="welcome_text">Gestione cada item con las opciones de la columna de <strong>Opciones</strong></p>
         </div>
@@ -25,9 +25,9 @@
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content p-2">
                     <form action="{{url('admin/patient/create')}}" enctype="multipart/form-data" method="post"
-                        class="needs-validation add-form">
+                        class="needs-validation add-form" name="add-form">
 
                         {{ csrf_field() }}
 
@@ -48,7 +48,9 @@
                                 <div class="form-group col-sm-6 col-12">
                                     <label for="idnumber">N° Identificación</label>
                                     <input type="text" name="idnumber" id="idnumber" class="form-control"
-                                        pattern="[0-9]*" required>
+                                        pattern="[0-9]*" placeholder="Ej. 222222222" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                             </div>
 
@@ -56,25 +58,34 @@
                                 <div class="form-group col-sm-6 col-12">
                                     <label for="name">Nombres</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
+                                        pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$"
+                                        placeholder="Ej. Lorem Ipsum" required>
                                     <div class="valid-feedback">Campo correcto</div>
                                     <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                                 <div class="form-group col-sm-6 col-12">
                                     <label for="last">Apellidos</label>
                                     <input type="text" name="last" id="last" class="form-control"
-                                        pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
+                                        pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$"
+                                        placeholder="Ej. Sit Amet" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
 
                             </div>
                             <div class="row mb-3">
                                 <div class="form-group col-md-4 col-sm-4 col-12">
                                     <label for="birth">Fecha de nacimiento</label>
-                                    <input type="date" name="birth" id="birth" class="form-control" required>
+                                    <input type="date" name="birth" id="birth" class="form-control" min="1900-01-01"
+                                        max="2022-07-01" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                                 <div class="form-group col-md-3 col-sm-4 col-12">
                                     <label for="stratrum">Estrato</label>
-                                    <input type="number" name="stratrum" id="stratrum" class="form-control" required>
+                                    <input type="number" min="0" max="6" name="stratrum" id="stratrum"
+                                        class="form-control" min="0" min="6" pattern="[0-6]" placeholder="Ej. 2"
+                                        required>
                                 </div>
                                 <div class="form-group col-md-3 col-sm-4 col-12">
                                     <label for="sex">Sexo</label>
@@ -82,6 +93,8 @@
                                         <option value="M">Masculino</option>
                                         <option value="F">Femenino</option>
                                     </select>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                             </div>
 
@@ -98,6 +111,8 @@
                                         <option value="{{$department->department_name}}">
                                             @endforeach
                                     </datalist>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                                 <div class="form-group col-md-3 col-sm-6 col-12">
                                     <label for="municipality" class="form-label">Municipios</label>
@@ -108,16 +123,24 @@
                                         <option value="{{$municipality->municipality_name}}">
                                             @endforeach
                                     </datalist>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
 
                                 </div>
                                 <div class="form-group col-md-3 col-sm-6 col-12">
                                     <label for="neigh">Barrio</label>
                                     <input type="text" name="neigh" id="neigh" class="form-control"
-                                        pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
+                                        pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$"
+                                        placeholder="Ej. Greda Roja" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                                 <div class="form-group col-md-3 col-sm-6 col-12">
                                     <label for="address">Dirección</label>
-                                    <input type="text" name="address" id="address" class="form-control" required>
+                                    <input type="text" name="address" id="address" class="form-control"
+                                        placeholder="Ej. Calle 23 N° 3-33" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                             </div>
 
@@ -126,17 +149,24 @@
                                 <div class="form-group col-12 col-sm-4 col-md-3">
                                     <label for="email">E-mail</label>
                                     <input type="text" name="email" id="email" class="form-control"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                        placeholder="Ej. lorem@mail.com" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                                 <div class="form-group col-12 col-sm-4 col-md-3">
                                     <label for="cel">Celular</label>
                                     <input type="text" name="cel" id="cel" class="form-control" pattern="[0-9]{10}$"
-                                        required>
+                                        placeholder="Ej. lorem@mail.com" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                                 <div class="form-group col-12 col-sm-4 col-md-3">
                                     <label for="tel">Teléfono</label>
                                     <input type="text" name="tel" id="tel" class="form-control" pattern="[0-9]{7}$"
-                                        required>
+                                        placeholder="7777777" required>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -147,7 +177,7 @@
                             </div>
 
                             <div class="form-group text-center">
-                                <button class="btn btn-primary" type="submit">Submit form</button>
+                                <button class="btn btn-primary" type="submit">Confirmar</button>
                             </div>
                         </div>
 
@@ -175,33 +205,15 @@
 
 @section('js')
 @livewireScripts
-<script type="text/javascript" src="/js/validate.js"></script>
 
-<script>
-
-    const $addform = document.querySelector('.add-form');
-
-    $addform.addEventListener('submit', (e) => {
-        e.preventDefault();
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+@if (session('add') == 'ok')
+    <script>
+        Swal.fire(
+            'Registro exitoso!',
+            'El paciente ha sido registrado de la base de datos.',
             'success'
-            )
-        }
-        })
-    });
-        
-    
-</script>
+        )
+    </script>
+@endif
+<script type="text/javascript" src="/js/functions.js"></script>
 @stop

@@ -53,7 +53,7 @@
                                     <i class="fas fa-pencil-alt"></i>
                                     <div class="bt-tooltip">Editar</div>
                                 </a>
-                                <form action="{{route('admin.medics.delete', $medic->id_medic)}}" method="POST" style="display:inline">
+                                <form action="{{route('admin.medics.delete', $medic->id_medic)}}" method="POST" style="display:inline" class="delete_form" name="delete_form">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button class="btn btn-danger button-action" type="submit"  title="Eliminar">
@@ -83,3 +83,16 @@
         @endif
     </div>
 </div>
+
+@section('js')
+    @if (session('delete') == 'ok')
+        <script>
+            Swal.fire(
+                'Eliminado!',
+                'El médico ha sido borrado de la base de datos.',
+                'success'
+            )
+        </script>
+    @endif
+    <script src="/js/functions.js"></script>
+@endsection

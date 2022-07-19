@@ -100,7 +100,7 @@ class PatientController extends Controller
             //         ->with('municipalities', Municipality::all());
 
 
-            return redirect()->back();
+            return redirect()->back()->with('add', 'ok');
         } else {
             Cache::flush();
             return redirect()->back();
@@ -170,7 +170,7 @@ class PatientController extends Controller
 			$patient->delete();
             Cache::flush();
 
-            return redirect()->back();
+            return redirect()->back()->with('delete', 'ok');
             // return view('admin.patients.patients');
         }
     }

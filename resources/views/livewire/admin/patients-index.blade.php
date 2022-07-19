@@ -18,7 +18,7 @@
                         {{--<th>Fecha de nacimiento</th>
                         <th>Estrato</th>
                         <th>Barrio</th>
-                         <th>Direccion</th>
+                        <th>Direccion</th>
                         <th>Celular</th>
                         <th>Teléfono</th>
                         <th></th> --}}
@@ -33,7 +33,7 @@
                         <td data-label="Apellido" class="table-data">{{$patient->last_patient}}</td>
                         <td data-label="Email" class="table-data">{{$patient->email_patient}}</td>
 
-                    
+
                         {{-- <td>{{$patient->birth_patient}}</td>
                         <td>{{$patient->social_strat_patient}}</td>
                         <td>{{$patient->neigh_patient}}</td>
@@ -41,20 +41,23 @@
                         <td>{{$patient->cel_patient}}</td>
                         <td>{{$patient->tel_patient}}</td>
                         <td>
-                           
+
                         </td> --}}
-                        <td data-label="Opciones"class="table-data">
+                        <td data-label="Opciones" class="table-data">
                             {{-- <a class="btn btn-primary" href="{{route('admin.users.edit', $user)}}">Editar</a> --}}
                             <div class="table_row_options">
-                                <a class="button-action mr-2" href="{{route('admin.patients.show',  $patient->id_patient)}}" title="Detalles">
+                                <a class="button-action mr-2"
+                                    href="{{route('admin.patients.show',  $patient->id_patient)}}" title="Detalles">
                                     <i class="fas fa-eye"></i>
                                     <div class="bt-tooltip">Detalles</div>
                                 </a>
-                                <a class="button-action text-success mr-2" href="{{route('admin.patients.edit', $patient->id_patient)}}" title="Editar">
+                                <a class="button-action text-success mr-2"
+                                    href="{{route('admin.patients.edit', $patient->id_patient)}}" title="Editar">
                                     <i class="fas fa-pencil-alt"></i>
                                     <div class="bt-tooltip">Editar</div>
                                 </a>
-                                <form action="{{route('admin.patients.delete', $patient->id_patient)}}" method="POST" style="display:inline">
+                                <form action="{{route('admin.patients.delete', $patient->id_patient)}}" method="POST"
+                                    style="display:inline" class="delete_form" name="delete_form">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button class="btn btn-danger button-action" type="submit" title="Eliminar">
@@ -63,15 +66,12 @@
                                     </button>
                                 </form>
                             </div>
-                            
+
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-
-
-
         </div>
 
         <div class="card-footer">
@@ -84,3 +84,16 @@
         @endif
     </div>
 </div>
+
+@section('js')
+    @if (session('delete') == 'ok')
+        <script>
+            Swal.fire(
+                'Eliminado!',
+                'El paciente ha sido borrado de la base de datos.',
+                'success'
+            )
+        </script>
+    @endif
+    <script src="/js/functions.js"></script>
+@endsection

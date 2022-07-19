@@ -22,7 +22,12 @@ class MedicController extends Controller
 
     public function index()
     {
-        return view('admin.medics.medic');
+        return view('admin.medics.medic')
+            ->with('idtypes', IdType::all())
+            ->with('branchoffices', BranchOffice::all())
+            ->with('medicalareas', MedicalArea::all())
+            ->with('departments', Department::all())
+            ->with('municipalities', Municipality::all());;
     }
 
     public function register() {
@@ -111,8 +116,7 @@ class MedicController extends Controller
             $medic->save();
 
             
-            notify()->success('Laravel Notify is awesome!'); /*Notificacion de aprobación */
-            return view('admin.medics.medic');
+            return redirect()->back()->with('add', 'ok');
         } else {
             return 'Cuenta ya existe';
         }
@@ -181,7 +185,7 @@ class MedicController extends Controller
 			$user = User::where('email', $medic->email_medic)->first();
             $user->delete();
 			$medic->delete();
-            return view('admin.medics.medic');
+            return redirect()->back()->with('delete', 'ok');
         }
     }
 }
