@@ -18,135 +18,135 @@ class DepartmentSeeder extends Seeder
         $Departments = [
             [
                 'id_department' => '5',
-                'department_name' => 'ANTIOQUIA'
+                'department_name' => 'Antioquia'
             ],
             [
                 'id_department' => '8',
-                'department_name' => 'ATLÁNTICO'
+                'department_name' => 'Atlántico'
             ],
             [
                 'id_department' => '11',
-                'department_name' => 'BOGOTÁ, D.C.'
+                'department_name' => 'Bogotá, D.C.'
             ],
             [
                 'id_department' => '13',
-                'department_name' => 'BOLÍVAR'
+                'department_name' => 'Bolívar'
             ],
             [
                 'id_department' => '15',
-                'department_name' => 'BOYACÁ'
+                'department_name' => 'Boyacá'
             ],
             [
                 'id_department' => '17',
-                'department_name' => 'CALDAS'
+                'department_name' => 'Caldas'
             ],
             [
                 'id_department' => '18',
-                'department_name' => 'CAQUETÁ'
+                'department_name' => 'Caquetá'
             ],
             [
                 'id_department' => '19',
-                'department_name' => 'CAUCA'
+                'department_name' => 'Cauca'
             ],
             [
                 'id_department' => '20',
-                'department_name' => 'CESAR'
+                'department_name' => 'Cesar'
             ],
             [
                 'id_department' => '23',
-                'department_name' => 'CÓRDOBA'
+                'department_name' => 'Córdoba'
             ],
             [
                 'id_department' => '25',
-                'department_name' => 'CUNDINAMARCA'
+                'department_name' => 'Cundinamarca'
             ],
             [
                 'id_department' => '27',
-                'department_name' => 'CHOCÓ'
+                'department_name' => 'Chocó'
             ],
             [
                 'id_department' => '41',
-                'department_name' => 'HUILA'
+                'department_name' => 'Huila'
             ],
             [
                 'id_department' => '44',
-                'department_name' => 'LA GUAJIRA'
+                'department_name' => 'La Guajira'
             ],
             [
                 'id_department' => '47',
-                'department_name' => 'MAGDALENA'
+                'department_name' => 'Magdalena'
             ],
             [
                 'id_department' => '50',
-                'department_name' => 'META'
+                'department_name' => 'Meta'
             ],
             [
                 'id_department' => '52',
-                'department_name' => 'NARIÑO'
+                'department_name' => 'Nariño'
             ],
             [
                 'id_department' => '54',
-                'department_name' => 'NORTE DE SANTANDER'
+                'department_name' => 'Norte De Santander'
             ],
             [
                 'id_department' => '63',
-                'department_name' => 'QUINDIO'
+                'department_name' => 'Quindio'
             ],
             [
                 'id_department' => '66',
-                'department_name' => 'RISARALDA'
+                'department_name' => 'Risaralda'
             ],
             [
                 'id_department' => '68',
-                'department_name' => 'SANTANDER'
+                'department_name' => 'Santander'
             ],
             [
                 'id_department' => '70',
-                'department_name' => 'SUCRE'
+                'department_name' => 'Sucre'
             ],
             [
                 'id_department' => '73',
-                'department_name' => 'TOLIMA'
+                'department_name' => 'Tolima'
             ],
             [
                 'id_department' => '76',
-                'department_name' => 'VALLE DEL CAUCA'
+                'department_name' => 'Valle Del Cauca'
             ],
             [
                 'id_department' => '81',
-                'department_name' => 'ARAUCA'
+                'department_name' => 'Arauca'
             ],
             [
                 'id_department' => '85',
-                'department_name' => 'CASANARE'
+                'department_name' => 'Casanare'
             ],
             [
                 'id_department' => '86',
-                'department_name' => 'PUTUMAYO'
+                'department_name' => 'Putumayo'
             ],
             [
                 'id_department' => '88',
-                'department_name' => 'ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA'
+                'department_name' => 'Archipiélago De San Andrés, Providencia Y Santa Catalina'
             ],
             [
                 'id_department' => '91',
-                'department_name' => 'AMAZONAS'
+                'department_name' => 'Amazonas'
             ],
             [
                 'id_department' => '94',
-                'department_name' => 'GUAINÍA'
+                'department_name' => 'Guainía'
             ],
             [
                 'id_department' => '95',
-                'department_name' => 'GUAVIARE'
+                'department_name' => 'Guaviare'
             ],
             [
                 'id_department' => '97',
-                'department_name' => 'VAUPÉS'
+                'department_name' => 'Vaupés'
             ],
             [
                 'id_department' => '99',
-                'department_name' => 'VICHADA'
+                'department_name' => 'Vichada'
             ],
             
         ];

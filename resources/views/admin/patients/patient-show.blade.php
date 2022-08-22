@@ -32,7 +32,7 @@
         <div class="col-12 col-md-6 mb-4">
             <div class="card-form p-4">
                 <h4 class="form-title mb-3">
-                    <i class="far fa-user mr-2"></i>Informacisón básica
+                    <i class="far fa-user mr-2"></i>Información básica
                 </h4>
                 <div class="row">
                     <div class="form-group col-6">

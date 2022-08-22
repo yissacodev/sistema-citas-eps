@@ -15,40 +15,53 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 class MedicController extends Controller
 {
 
+    private $idTypes, $medicalAreas, $departments;
+    
+    public function __construct(){
+        $this->idTypes = IdType::all();
+        $this->medicalAreas =  MedicalArea::all();
+        $this->departments = Department::all();
+    }
+
     public function index()
     {
         return view('admin.medics.medic')
-            ->with('idtypes', IdType::all())
-            ->with('branchoffices', BranchOffice::all())
-            ->with('medicalareas', MedicalArea::all())
-            ->with('departments', Department::all())
-            ->with('municipalities', Municipality::all());;
+            ->with('idtypes', $this->idTypes)
+            ->with('medicalareas', $this->medicalAreas)
+            ->with('departments', $this->departments);
     }
 
     public function register() {
         return view('admin.medics.medic-register')
-            ->with('idtypes', IdType::all())
+            ->with('idtypes', $this->idTypes)
             ->with('branchoffices', BranchOffice::all())
-            ->with('medicalareas', MedicalArea::all())
-            ->with('departments', Department::all())
+            ->with('medicalareas', $this->medicalAreas)
+            ->with('departments', $this->departments)
             ->with('municipalities', Municipality::all());
     }
 
     public function show($id){
         $medic = Medic::where('id_medic', $id)->first();
 
-        $area = Medic::join('branch_offices','branch_offices.id_branch', '=', 'medics.eps_branch_office')
-                    ->join('medical_areas', 'medical_areas.id_area', '=', 'branch_offices.medical_area')
+        $doctoroffice = Medic::join('doctor_offices','doctor_offices.id_office', '=', 'medics.eps_doctor_office')
+                    ->select('id_office', 'num_office')
+                    ->where('id_medic', $id)
+                    ->first();
+
+        $area = Medic::join('doctor_offices','doctor_offices.id_office', '=', 'medics.eps_doctor_office')
+                    ->join('medical_areas', 'medical_areas.id_area', '=', 'doctor_offices.medical_area')
                     ->select('name_area','color_area')
                     ->where('id_medic', $id)
                     ->first();
 
-        $office = Medic::join('branch_offices','branch_offices.id_branch', '=', 'medics.eps_branch_office')
+        $office = Medic::join('doctor_offices','doctor_offices.id_office', '=', 'medics.eps_doctor_office')
+                    ->join('branch_offices','branch_offices.id_branch', '=', 'doctor_offices.branch_office')
                     ->where('id_medic', $id)
                     ->first();
         // $user = User::where('email', $medic->email_medic)->first();
@@ -65,7 +78,8 @@ class MedicController extends Controller
             ->with('municipality', $municipality)
             ->with('idtype', $idtype)
             ->with('area', $area)
-            ->with('office', $office);
+            ->with('office', $office)
+            ->with('doctoroffice', $doctoroffice);
     }
 
     public function create(Request $request)
@@ -95,23 +109,15 @@ class MedicController extends Controller
             $medic->genre_medic =    $request->sex;
             $medic->birth_medic =    $request->birth;
             $medic->social_strat_medic = $request->stratrum;
-
-            $dep_found = Department::where('department_name', '=', $request->department)->first();
-            $medic->department_medic = $dep_found->id_department;
-
-            $mun_found = Municipality::where('municipality_name', '=', $request->municipality)->first();
-            $medic->municipality_medic = $mun_found->id_municipality;
-
+            $medic->department_medic = $request->department;
+            $medic->municipality_medic = $request->municipality;
             $medic->neigh_medic        = $request->neigh;
             $medic->home_address_medic = $request->address;
             $medic->email_medic        = $request->email;
             $medic->cel_medic          = $request->cel;
             $medic->tel_medic          = $request->tel;
             $medic->status_medic       = true;
-
-            /*Aqui cambiar el 1 por el nombre del área médica */
-            // $medic->speciality_medic       = $request->area;
-            $medic->eps_branch_office       = $request->branch;
+            $medic->eps_doctor_office  = $request->eps_doctor_office;
             $medic->desc_medic         = $request->desc;
             $medic->save();
 
@@ -138,7 +144,6 @@ class MedicController extends Controller
     }
 
     public function putEdit(Request $request, $id_medic){
-        // $medic = Medic::where('id_patient', $id_patient)->first();
         $medic = Medic::findOrFail($id_medic);
 
         $user = User::where('email', $request->email)->first();
@@ -172,10 +177,6 @@ class MedicController extends Controller
         $medic->save();
 
         return view('admin.medics.medic');
-        // } else {
-        notify()->success('Laravel Notify is awesome!');
-        // }
-
     }
 
     public function deleteMedic(Request $request, $id_medic){
@@ -187,5 +188,30 @@ class MedicController extends Controller
 			$medic->delete();
             return redirect()->back()->with('delete', 'ok');
         }
+
     }
+
+    public function getMunicipalities($id){
+        $municipatilies = DB::select('SELECT id_municipality, municipality_name FROM municipalities WHERE department = ?', [$id]);
+        echo json_encode($municipatilies);
+    }
+
+    public function getbranchoffices($id){
+        /*Distinct hace tomar el último elemento del array devuelto en consulta*/
+        $branchoffices = DB::select('SELECT DISTINCT id_branch, name_branch_office 
+        FROM
+        doctor_offices JOIN medical_areas ON medical_area = id_area
+        JOIN branch_offices ON branch_office = id_branch
+        WHERE medical_area = ?', [$id]);
+        echo json_encode($branchoffices);
+    }
+
+    public function getidentification($idtype, $idnum){
+        $hasMedic = DB::table('medics')
+                    ->where('idtype', '=', $idtype)
+                    ->where('identify_medic', '=', $idnum)
+                    ->get();
+        echo json_encode($hasMedic);
+    }
+    
 }

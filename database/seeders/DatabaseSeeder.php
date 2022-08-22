@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(IdTypeSeeder::class);
         $this->call(MedicalAreaSeeder::class);
         $this->call(BranchOfficeSeeder::class);
+        $this->call(DoctorOfficeSeeder::class);
         $this->call(PatientSeeder::class);
-        User::factory(10)->create();
+        $this->call(MedicSeeder::class);
+        $this->call(AppointmentSeeder::class);
     }
 }

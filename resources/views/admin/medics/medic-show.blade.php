@@ -27,11 +27,7 @@
     </div>
 
     <div class="container-fluid">
-        <form action="{{url('admin/medic/create')}}" enctype="multipart/form-data" method="post"
-            class="needs-validation" novalidate>
-
-            {{ csrf_field() }}
-
+        
             <div class="row">
                 <div class="col-12 col-md-6 mb-4">
                     <div class="card-form p-4">
@@ -95,14 +91,22 @@
                                 <label for="dir">Dirección sede</label>
                                 <p>{{$office->eps_branch_address}}</p>
                             </div>
-
-                            <div class="row">
-                                <div class="form-group col-12">
-                                    <label for="sch">Horarios</label>
-                                    <p>{{$office->office_hours_branch}}</p>
-                                </div>
+                            <div class="form-group col-12">
+                                <label for="doctoroffice">Consultorio</label>
+                                <p>{{$doctoroffice->num_office}}</p>
                             </div>
 
+                            
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="form-group col-12">
+                                <label for="sch">Horarios</label>
+                                <p>{{$office->office_hours_branch}}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row mb-3">
                             <div class="form-group col-6">
                                 <label for="tel">Teléfono 1</label>
                                 <p>{{$office->tel_branch}}</p>
@@ -111,138 +115,135 @@
                                 <label for="tel">Teléfono 2</label>
                                 <p>{{$office->tel2_branch}}</p>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card-form p-4">
-                        <h4 class="form-title mb-3">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Ubicación
-                        </h4>
-
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="department" class="form-label">Departamento</label>
-                                <p>{{$department}}</p>
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="municipality" class="form-label">Municipio</label>
-                                <p>{{$municipality}}</p>
-
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="neigh">Barrio</label>
-                                <p>{{$medic->neigh_medic}}</p>
-
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="address">Dirección</label>
-                                <p>{{$medic->home_address_medic}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card-form p-4">
-                        <h4 class="form-title mb-3">
-                            <i class="far fa-address-book"></i>
-                            Contacto
-                        </h4>
-                        <div class="row mb-3">
-
-                            <div class="form-group col-6">
-                                <label for="email">E-mail</label>
-                                <p>
-                                    {{$medic->email_medic}}
-
-                                </p>
-
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="cel">Celular</label>
-                                <p>{{$medic->cel_medic}}</p>
-                            </div>
-
-
-                            <div class="form-group col-6">
-                                <label for="tel">Teléfono</label>
-                                <p>{{$medic->tel_medic}}</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card-form p-4">
-                        <div class="row">
-                            <h4 class="form-title mb-3">
-                                <i class="far fa-list-alt"></i>
-                                Descripción
-                            </h4>
-                            <div class="form-group col-12">
-                                <p>{{$medic->desc_medic}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </form>
     </div>
-    @include('notify::components.notify')
-    @stop
 
-    @section('content')
+    <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+            <div class="card-form p-4">
+                <h4 class="form-title mb-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ubicación
+                </h4>
 
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="department" class="form-label">Departamento</label>
+                        <p>{{$department}}</p>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="municipality" class="form-label">Municipio</label>
+                        <p>{{$municipality}}</p>
 
-    @stop
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="neigh">Barrio</label>
+                        <p>{{$medic->neigh_medic}}</p>
 
-
-
-    @section('css')
-    @livewireStyles
-
-    <link rel="stylesheet" href="/css/admin_custom.css">
-    <link rel="stylesheet" href="/css/style.css">
-    @stop
-
-
-
-    @section('js')
-
-    <script type="text/javascript" src="/js/validate.js"></script>
-    @livewireScripts
-    @stop
-
-
-
-    {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header modal-header__color">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Nuevo paciente</h5>
-                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body d-flex justify-content-center">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="address">Dirección</label>
+                        <p>{{$medic->home_address_medic}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+        <div class="col-12 col-md-6 mb-4">
+            <div class="card-form p-4">
+                <h4 class="form-title mb-3">
+                    <i class="far fa-address-book"></i>
+                    Contacto
+                </h4>
+                <div class="row mb-3">
+
+                    <div class="form-group col-6">
+                        <label for="email">E-mail</label>
+                        <p>
+                            {{$medic->email_medic}}
+
+                        </p>
+
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="cel">Celular</label>
+                        <p>{{$medic->cel_medic}}</p>
+                    </div>
+
+
+                    <div class="form-group col-6">
+                        <label for="tel">Teléfono</label>
+                        <p>{{$medic->tel_medic}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+            <div class="card-form p-4">
+                <div class="row">
+                    <h4 class="form-title mb-3">
+                        <i class="far fa-list-alt"></i>
+                        Descripción
+                    </h4>
+                    <div class="form-group col-12">
+                        <p>{{$medic->desc_medic}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@stop
+
+@section('content')
+
+
+@stop
+
+
+
+@section('css')
+@livewireStyles
+
+<link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="/css/style.css">
+@stop
+
+
+
+@section('js')
+
+<script type="text/javascript" src="/js/validate.js"></script>
+@livewireScripts
+@stop
+
+
+
+{{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header__color">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo paciente</h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> --}}

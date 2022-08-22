@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreignId('department_patient')->references('id_department')->on('departments');
             $table->foreignId('municipality_patient')->references('id_municipality')->on('municipalities');
             $table->string('neigh_patient', '50');
-            $table->string('home_address_patient', '50');
+            $table->string('home_address_patient', '100');
             $table->string('email_patient', '50');
             $table->string('tel_patient', '50');
             $table->string('cel_patient', '50');

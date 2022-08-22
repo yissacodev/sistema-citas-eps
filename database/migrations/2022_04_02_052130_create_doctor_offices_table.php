@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('branch_offices', function (Blueprint $table) {
-            $table->id('id_branch');
-            $table->string('name_branch_office', '50');
-            $table->string('eps_branch_address', '50');
-            $table->string('office_hours_branch', '50');
-            $table->string('tel_branch', '30');
-            $table->string('tel2_branch', '30')->nullable();;
+        Schema::create('doctor_offices', function (Blueprint $table) {
+            $table->id('id_office');
+            $table->foreignId('branch_office')->references('id_branch')->on('branch_offices');
+            $table->foreignId('medical_area')->references('id_area')->on('medical_areas')->onDelete('cascade');
+            $table->string('num_office', 4);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branch_offices');
+        Schema::dropIfExists('doctor_offices');
     }
 };

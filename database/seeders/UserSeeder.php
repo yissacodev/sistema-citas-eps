@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+
 
 class UserSeeder extends Seeder
 {
@@ -13,38 +15,16 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-
+    public function run(){
         User::create([
             'name' => 'Yesid Acosta',
             'email' => 'yesid9511@hotmail.com',
-            'password' => bcrypt('oresama9611')
-        ])->assignRole('Admin');
-        User::factory(40)->create();
+            'email_verified_at' => now(),
+            'password' => bcrypt('oresama9611'),
+            'remember_token' => Str::random(10)
+        ])->assignRole('Admin');        
 
-        $users = [
-            [
-                'id'    => '70',
-                'name' => 'Fernando Pulido',
-                'email' => 'pulido@gmail.com',
-                'password' => bcrypt('password')
-            ],
-            [
-                'id'    => '71',
-                'name' => 'Maria Alegre',
-                'email' => 'alegria@gmail.com',
-                'password' => bcrypt('password')
-            ],
-            // [
-            //     'name' => '',
-            //     'email' => '',
-            //     'password' => bcrypt('')
-            // ],
-        ];
+        //$guardado = User::factory(40)->create();
 
-        foreach ($users as $user) {
-            User::create($user)->assignRole('Usuario');
-        }
     }
 }

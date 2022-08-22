@@ -153,9 +153,10 @@
                 <textarea name="desc" id="desc" class="form-control" rows="3"></textarea>
             </div>
         </div>
-    
+
+        
         <div class="form-group text-center">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-primary" type="submit">Confirmar registro</button>
         </div>
     </div>
 
@@ -176,30 +177,8 @@
 
 
 @section('js')
-
 <script type="text/javascript" src="/js/validate.js"></script>
 @livewireScripts
+
+
 @stop
-
-
-
-{{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header modal-header__color">
-                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo paciente</h5>
-                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body d-flex justify-content-center">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div> --}}

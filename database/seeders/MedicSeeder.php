@@ -2,14 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Patient;
+use App\Models\Medic;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-
-class PatientSeeder extends Seeder
+class MedicSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,15 +17,17 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        $patients = Patient::factory(20)->create();   
-        foreach ($patients as $patient){
+        $medics = Medic::factory(20)->create();
+
+        foreach ($medics as $medic){
             User::create([
-                'name' => $patient['name_patient'],
-                'email' => $patient['email_patient'],
+                'id' => $medic['id_user'],
+                'name' => $medic['name_medic'],
+                'email' => $medic['email_medic'],
                 'email_verified_at' => now(),
-                'password' => bcrypt($patient['identify_patient']),
+                'password' => bcrypt($medic['identify_medic']),
                 'remember_token' => Str::random(10)
-            ])->assignRole('Usuario');
+            ])->assignRole('Doctor');
         }
     }
 }

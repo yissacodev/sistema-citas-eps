@@ -100,6 +100,12 @@
     color: var(--white-comfamiliar);
 }
 
+.instructions_list{
+    font-size: calc(0.7em + 0.2vw);
+    color: var(--white-comfamiliar);
+    text-align: left;
+}
+
 .btn_add{
     font-size: calc(0.8em + 0.2vw);
     min-width: 7em;
@@ -232,6 +238,10 @@
     color: var(--white-comfamiliar);
 }
 
+#idnumber:focus ~ .invalid-feedback{
+    display: none;
+}
+
 .card-overflow-x{
     overflow-x: scroll;
 }
@@ -315,6 +325,8 @@
 }
 
 
+
+
 /*--------------------------------------------------------------*/
 @media screen and (max-width: 768px){
     .info-header{
@@ -358,6 +370,8 @@
     .medarea-desc{
         width: 50%;
     }
+
+
 }
 
 

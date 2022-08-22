@@ -14,16 +14,13 @@
         <!-- Styles -->
         
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
         
         @livewireStyles
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.3/css/OverlayScrollbars.min.css"> --}}
         
         <!-- Scripts -->
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.3/js/OverlayScrollbars.min.js"></script> --}}
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.js"></script>
-
-        {{-- <script src="{{ mix('js/schedule.js')}}" defer></script> --}}
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

@@ -28,13 +28,15 @@ return new class extends Migration
             $table->date('birth_medic');
             $table->string('social_strat_medic', '1');            
             
-            $table->foreignId('eps_branch_office')->references('id_branch')->on('branch_offices')->onDelete('cascade');
+            $table->foreignId('eps_doctor_office')->references('id_office')->on('doctor_offices');
+
+            //$table->foreignId('speciallity_medic')->references('id_area')->on('medical_areas')->onDelete('cascade');
             
             $table->foreignId('department_medic')->references('id_department')->on('departments');
             $table->foreignId('municipality_medic')->references('id_municipality')->on('municipalities');
             $table->string('neigh_medic', '50');
 
-            $table->string('home_address_medic', '50');
+            $table->string('home_address_medic', '100');
             $table->string('email_medic', '50');
             $table->string('tel_medic', '50');
             $table->string('cel_medic', '50');

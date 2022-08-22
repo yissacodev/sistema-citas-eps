@@ -61,6 +61,10 @@ Route::controller(AppointmentController::class)->prefix('appointments')->group(f
     Route::get('/userlist',  'list'); /* Primero se hace esta para ver si la de abajo son necesarias */
     Route::get('/mediclist',  'list');
     Route::get('/authorizations', [AuthorizationsController::class, 'index']); /*Autorizaciones */
+
+    Route::get('register/getmedics/{id}/{area}', 'getMedics')->name('admin.appoints.getmedics');
+    Route::get('register/getdiary/{id}', 'getDiary')->name('admin.appoints.getdiary');
+    Route::get('getdays/{id}', 'getdays')->name('admin.appoints.getdays');
 });
 Route::get('history', [AppointmentController::class, 'list']); /*Historias clinicas por paciente */
 
@@ -88,6 +92,10 @@ Route::controller(MedicController::class)->prefix('medic')->group(function(){
     Route::get('edit/{id}', 'edit')->name('admin.medics.edit');
     Route::delete('delete/{id}', 'deletemedic')->name('admin.medics.delete');
     Route::put('edit/{id}', 'putEdit');
+
+    Route::get('getmunicipalities/{id}', 'getmunicipalities')->name('admin.medics.getmunicipalities');
+    Route::get('getbranchoffices/{id}', 'getbranchoffices')->name('admin.medics.getbranchoffices');
+    Route::get('getidentification/{idtype}/{idnum}', 'getidentification')->name('admin.medics.getidentification');
 });
 
 Route::controller(MedicalAreaController::class)->prefix('specializations')->group(function(){
@@ -107,7 +115,5 @@ Route::get('users/edit/{user}', [UserController::class, 'edit'])->name('admin.us
 Route::put('users/update/{user}', [UserController::class, 'update'])->name('admin.users.update');
 
 Route::get('doctor', [UserController::class, 'index']);
-// Route::get('specializations', [SpecializationController::class, 'index']);
-
 
 Route::get('authorizations', [AuthorizationsController::class, 'index']);
