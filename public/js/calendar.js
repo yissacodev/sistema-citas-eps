@@ -1,14 +1,8 @@
 let nav = 0;
 let clicked = null;
-let events = localStorage.getItem("events")
-    ? JSON.parse(localStorage.getItem("events"))
-    : [];
+let events;
 
 const calendar = document.querySelector(".calendar");
-const newEventModal = document.querySelector(".newEventModal");
-const deleteEventModal = document.querySelector(".deleteEventModal");
-const backDrop = document.querySelector(".modalBackDrop");
-const eventTitleInput = document.querySelector(".eventTitleInput");
 const weekdays = [
     "Sunday",
     "Monday",
@@ -19,8 +13,41 @@ const weekdays = [
     "Saturday",
 ];
 
-const $scheduleAppointInfo = document.createElement("template")
-$scheduleAppointInfo.innerHTML = `
+const $templateScheduleInstructions = document.createElement("template");
+$templateScheduleInstructions.innerHTML = `
+    <div id="scheduleInstructions" class="schedule_instruction-cards d-flex justify-content-between">
+        <div class="instruction_card d-flex flex-row">
+            <div class="instruction_card-icon d-flex justify-content-center align-items-center">
+                <i class="fas fa-mouse-pointer"></i>
+            </div>
+            <div class="instruction_text">
+                <div class="instruction_title">Seleccionar</div>
+                <div class="instruction_paragraph">Hora de su cita</div>
+            </div>
+        </div>
+        <div class="instruction_card d-flex flex-row">
+            <div class="instruction_card-icon d-flex justify-content-center align-items-center">
+                <i class="fa fa-address-book" aria-hidden="true"></i>
+            </div>
+            <div class="instruction_text">
+                <div class="instruction_title">Llenar formulario</div>
+                <div class="instruction_paragraph">Información opcional de su solicitud</div>
+            </div>
+        </div>
+        <div class="instruction_card d-flex flex-row">
+            <div class="instruction_card-icon d-flex justify-content-center align-items-center">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="instruction_text">
+                <div class="instruction_title">Confirmar</div>
+                <div class="instruction_paragraph">Solicitud de si cita</div>
+            </div>
+        </div>
+    </div>
+`;
+
+const $templateScheduleAppointInfo = document.createElement("template")
+$templateScheduleAppointInfo.innerHTML = `
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
@@ -31,166 +58,101 @@ $scheduleAppointInfo.innerHTML = `
                 </h4>
 
                 <div class="row">
-                    <div class="form-group col-6">
-                        <label for="department" class="form-label">Médico</label>
-                        <p>Lorem ipsum</p>
+                    <div class="form-group col-12 col-md-6 m-0">
+                        <label class="form-label">Médico</label>
+                        <p id="appointMedic">Lorem ipsum</p>
                     </div>
-                    <div class="form-group col-6">
-                        <label for="municipality" class="form-label">Tipo de cita</label>
-                        <p>Lorem ipsum</p>
+                    <div class="form-group col-12 col-md-6 m-0">
+                        <label class="form-label">Tipo de cita</label>
+                        <p id="appointType">Lorem ipsum</p>
 
                     </div>
-                    <div class="form-group col-6">
-                        <label for="neigh">Consultorio</label>
-                        <p>Lorem ipsum</p>
+                    <div class="form-group col-12 col-md-6 m-0">
+                        <label>Sede</label>
+                        <p id="appointBranchOffice">Lorem ipsum</p>
+                    </div>
+                    <div class="form-group col-12 col-md-6 m-0">
+                        <label>Fecha</label>
+                        <p id="appointDate">Lorem ipsum</p>
+                    </div>
+                    <div class="form-group col-12 col-md-6 m-0">
+                        <label>Hora</label>
+                        <p id="appointHour">Lorem ipsum</p>
+                        </div>
+                    </div>
+                    
+                <form action="" name="frm_appoint_create" enctype="multipart/form-data" method="post">        
+                    <input type="hidden" name="_token"">                
+                    <input type="hidden" name="idmedic">
+                    <input type="hidden" name="date">
+                    <input type="hidden" name="hour">
+                    <input type="hidden" name="status">
+                    <div class="form-group text-center">
+                    <button id="appointConfirmBtn" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </form>
+                       
+                </div>
 
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="address">Sede</label>
-                        <p>Lorem ipsum</p>
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="address">Dirección</label>
-                        <p>Lorem ipsum</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <button class="btn">Confirmar</button>
-                </div>
+
+                
             </div>
         </div>
     </div>
 </div>`;
 
-function openModal(eventForDay) {
-    /*fecha clickeada */
-    // clicked = date;
+function loadSchedule() {
+    let $availableBranchOffices = document.getElementById("availableBranchoffices");
+    let $availableMedics = document.getElementById("availableMedics");
+    let $fragment = document.createDocumentFragment();
 
-    /*Si la fecha del evento pasado conincide con uno guardado en el JSON
-    La ventana modal muestra los datos de eses evento
+    $availableBranchOffices.addEventListener("change", () => {
+        $availableMedics.innerHTML = "";
+        fetch(
+            "getmedics/" + $availableBranchOffices.value + "/" +$availableBranchOffices.dataset.area
+        )
+        .then((res) => {
+            console.log(res);
+            return res.ok ? res.json() : Promise.reject(res);
+        })
+        .then((json) => {
+            console.log(json);
+            const $option = document.createElement("option");
+            $option.innerHTML = "Seleccione un médico";
+            $option.value = "";
+            $option.selected = true;
+            $option.disabled = true;
+            $option.hidden = true;
+            $fragment.appendChild($option);
+            json.forEach((el) => {
+                const $option = document.createElement("option");
+                $option.value = el.id_medic;
+                $option.innerText = `${el.name_medic}`;
+                $fragment.appendChild($option);
+            });
+            $availableMedics.appendChild($fragment);
+        });
+    });
 
-    Si no, se muestra un formulario para registrar un nuevo evento
-    */
-    // const eventForDay = events.find((e) => e.date === clicked);
-
-    /*Hacer las variables globales */
-    console.log("Array enviado desde load", eventForDay);
-
-    const $modalBody = document.getElementById("modalBody");
-    $modalBody.innerHTML = "";
-
-    const $scheduleScrollBackground = document.createElement("div");
-    $scheduleScrollBackground.classList.add("schedule_scroll-background");
-
-    const $scheduleDay = document.createElement("div");
-    $scheduleDay.classList.add("schedule_day");
-
-    const $fragment = document.createDocumentFragment();
-
-    const $scheduleinstructions = document.createElement("template");
-    $scheduleinstructions.innerHTML = `
-    <div id="scheduleInfo" class="schedule_info d-none d-sm-flex flex-column justify-content-center align-items-center">
-        <div class="schedule_instruction"><span>Pasos</span></div>
-        <div class="schedule_instruction-cards d-flex justify-content-between">
-            <div class="instruction_card d-flex flex-row">
-                <div class="instruction_card-icon d-flex justify-content-center align-items-center">
-                    <i class="fas fa-mouse-pointer"></i>
-                </div>
-                <div class="instruction_text">
-                    <div class="instruction_title">Seleccionar</div>
-                    <div class="instruction_paragraph">Hora de su cita</div>
-                </div>
-            </div>
-            <div class="instruction_card d-flex flex-row">
-                <div class="instruction_card-icon d-flex justify-content-center align-items-center">
-                    <i class="fa fa-address-book" aria-hidden="true"></i>
-                </div>
-                <div class="instruction_text">
-                    <div class="instruction_title">Llenar formulario</div>
-                    <div class="instruction_paragraph">Información opcional de su solicitud</div>
-                </div>
-            </div>
-            <div class="instruction_card d-flex flex-row">
-                <div class="instruction_card-icon d-flex justify-content-center align-items-center">
-                    <i class="fas fa-check"></i>
-                </div>
-                <div class="instruction_text">
-                    <div class="instruction_title">Confirmar</div>
-                    <div class="instruction_paragraph">Solicitud de si cita</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-    const $scheduleAllHours = document.getElementsByClassName("schedule_hour-selected");
-
-
-
-    let minutes = 0;
-    let hourAfter = 1;
-    let hourString;
-    for (let n = 7; n < 17; n++) {
-        while (minutes < 3 && n !== 12) {
-            const $scheduleHour = document.createElement("div");
-            $scheduleHour.classList.add("schedule_hour");
-            hourString = `${String(n).padStart(2, "0")}:${String(
-                20 * minutes
-            ).padStart(2, "0")}:00`;
-            $scheduleHour.setAttribute("data-hour", hourString);
-
-            if (n < 12) {
-                $scheduleHour.innerHTML = hourString.substring(0, hourString.length - 3) + " am";
-            }
-            if (n > 12) {
-                $scheduleHour.innerHTML = `${String(hourAfter).padStart(
-                    2,
-                    "0"
-                )}:${String(20 * minutes).padStart(2, "0")} pm`;
-            }
-            minutes++;
-
-            let occupiedHour = eventForDay.find((e) => $scheduleHour.dataset.hour === e.appoint_start_hour);
-            if(occupiedHour){
-                $scheduleHour.classList.add("schedule_hour-occupied");
-            }
-            
-            
-            $scheduleHour.addEventListener('click', () => {
-                
-                for (const hour of $scheduleAllHours) {
-                    hour.classList.remove("schedule_hour-selected");
-                }
-
-                $scheduleHour.classList.add("schedule_hour-selected")
-                const $scheduleInfo = document.getElementById("scheduleInfo");
-                $scheduleInfo.innerHTML = "";
-                $scheduleInfo.appendChild($scheduleAppointInfo.content)
-                
-
-                /*
-                    A schedule info añadirle un template de formulario que 
-                    hay que crear arriba
-                    aqui adentro vamos a agregarlo
-                    obtener sus clases y añadirle los valores
-                    Añadir un boton con ajax
-                    Obtener valores
-                    enviarlos a la base de datos
-                */
-            })
-
-            $scheduleDay.appendChild($scheduleHour);
-        }
-        if (n > 12) hourAfter++;
-        minutes = 0;
-    }
-
-    $fragment.appendChild($scheduleDay);
-    $scheduleScrollBackground.appendChild($fragment)
-    $modalBody.append($scheduleScrollBackground, $scheduleinstructions.content);
-
+    $availableMedics.addEventListener("change", () => {
+        fetch("getdiary/" + $availableMedics.value)
+        .then((res) => {
+            console.log(res);
+            return res.ok ? res.json() : Promise.reject(res);
+        })
+        .then((json) => {
+            console.log(json);
+            events = json;
+            load();
+            initButtons();
+        });
+    });
 }
 
-function load(eventsSchedule) {
+
+
+function load() {
+    
     const dt = new Date();
 
     if (nav !== 0) {
@@ -223,10 +185,7 @@ function load(eventsSchedule) {
     calendar.innerHTML = "";
 
     const daysFragment = document.createDocumentFragment("div");
-    /*
-    Crear el calendario del mes actual y
-    Poner las ventanas modales en todos los cuadritos 
-    paddingDays Son los dias de otro mes vistos desde el mes actual*/
+    
     for (let i = 1; i <= paddingDays + daysInMonth; i++) {
         let daySquare = document.createElement("div");
         daySquare.classList.add("day");
@@ -274,14 +233,14 @@ function load(eventsSchedule) {
 
                 const eventDiv = document.createElement("div");
                 eventDiv.classList.add("event");
-                eventDiv.innerText = eventForDay.appoint_start_date;
+                eventDiv.innerText = occupied;
 
                 daySquare.appendChild(eventtitle);
                 daySquare.appendChild(eventDiv);
             }
 
             daySquare.addEventListener("click", () =>
-                openModal(eventForDay)
+                openModal(eventForDay, dateString)
             ); /*Esta abre la ventana modal */
         }
 
@@ -310,94 +269,8 @@ function load(eventsSchedule) {
     }
 }
 
-function loadSchedule() {
-    let $availableBranchOffices = document.getElementById(
-        "available_branchoffices"
-    );
-    let $availableMedics = document.getElementById("available_medics");
-    let $fragment = document.createDocumentFragment();
 
-    $availableBranchOffices.addEventListener("change", () => {
-        $availableMedics.innerHTML = "";
-        fetch(
-            "getmedics/" +
-                $availableBranchOffices.value +
-                "/" +
-                $availableBranchOffices.dataset.area
-        )
-            .then((res) => {
-                console.log(res);
-                return res.ok ? res.json() : Promise.reject(res);
-            })
-            .then((json) => {
-                console.log(json);
-                const $option = document.createElement("option");
-                $option.innerHTML = "Seleccione un médico";
-                $option.value = "";
-                $option.selected = true;
-                $option.disabled = true;
-                $option.hidden = true;
-                $fragment.appendChild($option);
-                json.forEach((el) => {
-                    const $option = document.createElement("option");
-                    $option.value = el.id_medic;
-                    $option.innerText = `${el.name_medic}`;
-                    $fragment.appendChild($option);
-                });
-                $availableMedics.appendChild($fragment);
-            });
-    });
 
-    $availableMedics.addEventListener("change", () => {
-        let idMedic = $availableMedics.value;
-
-        fetch("getdiary/" + idMedic)
-            .then((res) => {
-                console.log(res);
-                return res.ok ? res.json() : Promise.reject(res);
-            })
-            .then((json) => {
-                console.log(json);
-                events = json;
-                load(json);
-            });
-    });
-}
-
-function closeModal() {
-    eventTitleInput.classList.remove(
-        "error"
-    ); /*Borrar el focus de entrada invalida*/
-    newEventModal.style.display = "none"; /*Ocultar la modal de registro*/
-    deleteEventModal.style.display =
-        "none"; /*Ocultar la modal de borrar evento */
-    backDrop.style.display = "none";
-    eventTitleInput.value = ""; /*Eliminar el valor de la caja de texto*/
-    clicked = null;
-    load(); /*Volver a desplegar el calendario */
-}
-
-function saveEvent() {
-    if (eventTitleInput.value) {
-        eventTitleInput.classList.remove("error");
-
-        events.push({
-            date: clicked,
-            title: eventTitleInput.value,
-        });
-        console.log("Esto es events: ", events);
-        localStorage.setItem("events", JSON.stringify(events));
-        closeModal();
-    } else {
-        eventTitleInput.classList.add("error");
-    }
-}
-
-function deleteEvent() {
-    events = events.filter((e) => e.date !== clicked);
-    localStorage.setItem("events", JSON.stringify(events));
-    closeModal();
-}
 
 function initButtons() {
     document.querySelector(".next-btn").addEventListener("click", () => {
@@ -409,25 +282,124 @@ function initButtons() {
         nav--;
         load();
     });
-
-    document.querySelector(".saveButton").addEventListener("click", saveEvent);
-    document
-        .querySelector(".cancelButton")
-        .addEventListener("click", closeModal);
-    document
-        .querySelector(".deleteButton")
-        .addEventListener("click", deleteEvent);
-    document
-        .querySelector(".closeButton")
-        .addEventListener("click", closeModal);
 }
 
-initButtons();
+function openModal(eventForDay, dateString) {
 
-/*Cargar los medicos */
+    /*Hacer las variables globales */
+    console.log("Array enviado desde load", eventForDay);
+
+    const $modalBody = document.getElementById("modalBody");
+    $modalBody.innerHTML = "";
+
+    /*--Panel izquierdo de la ventana modal--*/
+    const $scheduleScrollBackground = document.createElement("div");
+    $scheduleScrollBackground.classList.add("schedule_scroll-background");
+
+    const $scheduleDay = document.createElement("div");
+    $scheduleDay.classList.add("schedule_day");
+
+    const $scheduleAllHours = document.getElementsByClassName("schedule_hour-selected");
+
+    const $fragment = document.createDocumentFragment();
+
+
+    /*--Panel derecho de la ventana modal--*/
+    const $scheduleInfoPanel = document.createElement("div");
+    $scheduleInfoPanel.id = "scheduleInfoPanel";
+    $scheduleInfoPanel.classList.add("schedule_info", "d-none", "d-sm-flex", "flex-column", "justify-content-center", "align-items-center");
+    const $scheduleInstructions = document.importNode($templateScheduleInstructions.content, true);                        
+                        
+    let minutes = 0;
+    let hourAfter = 1;
+    let hourString;
+    for (let n = 7; n < 17; n++) {
+        while (minutes < 3 && n !== 12) {
+            const $scheduleHour = document.createElement("div");
+            $scheduleHour.classList.add("schedule_hour");
+            hourString = `${String(n).padStart(2, "0")}:${String(
+                20 * minutes
+            ).padStart(2, "0")}:00`;
+            $scheduleHour.setAttribute("data-hour", hourString);
+
+            $scheduleHour.innerHTML = (n < 12 && n !== 12) ?
+                hourString.substring(0, hourString.length - 3) + " am" :
+                `${String(hourAfter).padStart(2,"0")}:${String(20 * minutes).padStart(2, "0")} pm`;
+                
+            minutes++;
+
+            /*Encontrar horas ocupadas si no agregar evento*/
+            let occupiedHour = eventForDay.find((e) => $scheduleHour.dataset.hour === e.appoint_start_hour);
+            if(occupiedHour){
+                $scheduleHour.classList.add("schedule_hour-occupied");
+            }
+            else{
+                $scheduleHour.addEventListener('click', () => {
+                    for (const hour of $scheduleAllHours) {
+                        hour.classList.remove("schedule_hour-selected");
+                    }
+                    $scheduleHour.classList.add("schedule_hour-selected");
+
+                    const $scheduleInfoPanel = document.getElementById("scheduleInfoPanel");
+                    $scheduleInfoPanel.innerHTML = "";
+
+                    const $scheduleCardInfo = document.importNode($templateScheduleAppointInfo.content, true);
+                    $scheduleInfoPanel.appendChild($scheduleCardInfo);
+                    
+                    const $appointMedic = document.getElementById("appointMedic"),
+                        $appointType = document.getElementById("appointType"),
+                        $appointBranchOffice = document.getElementById("appointBranchOffice"),
+                        $appointHour = document.getElementById("appointHour"),
+                        $appointDate = document.getElementById("appointDate"),
+                        $appointConfirmBtn = document.getElementById("appointConfirmBtn");
+
+                    const $selectedMedic = document.getElementById("availableMedics");
+                    $appointMedic.innerHTML = $selectedMedic.options[$selectedMedic.selectedIndex].innerText;
+
+                    $appointType.innerHTML = document.querySelector(".welcome_title").innerHTML;
+
+                    const $selectedBranchOffice = document.getElementById("availableBranchoffices");
+                    $appointBranchOffice.innerHTML = $selectedBranchOffice.options[$selectedBranchOffice.selectedIndex].innerText;
+
+                    $appointHour.innerHTML = $scheduleHour.innerHTML;
+                    $appointDate.innerHTML = dateString;
+                    
+                    const $confirmButton = document.getElementById("appointConfirmBtn");
+                    $confirmButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        /*Poner la dirección actual en el action del form*/
+                        document.forms.frm_appoint_create.action = location.href.split(/[0-9]/ig)[0] + 'create';
+
+                        /*Preparar los inputs del formulario para ser enviados */
+                        const formAppointCreate = document.forms.frm_appoint_create;
+                        let csrf = document.querySelector('meta[name="csrf-token"]').content;
+                        formAppointCreate._token.value = csrf;
+                        formAppointCreate.idmedic.value = $selectedMedic.value;
+                        formAppointCreate.date.value = dateString;
+                        formAppointCreate.hour.value = $scheduleHour.dataset.hour;
+                        formAppointCreate.status.value = '1';
+
+
+                        console.log(document.forms.frm_appoint_create.action);
+                        formAppointCreate.submit();
+                    })
+                })
+            }
+
+            $scheduleDay.appendChild($scheduleHour);
+        }
+        if (n > 12) hourAfter++;
+        minutes = 0;
+    }
+
+    $fragment.appendChild($scheduleDay);
+    $scheduleScrollBackground.appendChild($fragment);
+    $scheduleInfoPanel.appendChild($scheduleInstructions);
+    $modalBody.append($scheduleScrollBackground, $scheduleInfoPanel);
+
+}
+
+
+/*Cargar todo el componente */
 loadSchedule();
 
-/*Cargar todos los eventos en el calendario*/
-load();
-
-/*HAcer una funcion ajax hacia los médicos*/

@@ -26,7 +26,7 @@ class PatientSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => bcrypt($patient['identify_patient']),
                 'remember_token' => Str::random(10)
-            ])->assignRole('Usuario');
+            ])->assignRole('User');
         }
     }
 }

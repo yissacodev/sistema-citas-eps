@@ -17,9 +17,9 @@
             <div class="col-6 col-md-3 mb-4">
 
                 @if(!str_starts_with($medicalarea->color_area, '#'))
-                    <a href="{{'appointments/register/'.$medicalarea->id_area}}" class="area-card {{$medicalarea->color_area}}">
+                    <a href="{{'appointments/register/'.$medicalarea->id_area}}" class="area-card {{$medicalarea->color_area}}" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 @else
-                    <a href="{{'appointments/register/'.$medicalarea->id_area}}" class="area-card" style="background-color: {{$medicalarea->color_area}}">
+                    <a href="{{'appointments/register/'.$medicalarea->id_area}}" class="area-card" style="background-color: {{$medicalarea->color_area}}" data-bs-toggle="modal" data-bs-target="#exampleModal">>
                 @endif
 
                     @if(str_starts_with($medicalarea->icon_area, '/storage'))
@@ -39,6 +39,25 @@
             </div>
         @endforeach
         @endif
+        <div class="modal fade day-schedule-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header modal-header__color">
+                        <h5 class="modal-title">Espacios disponibles</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="modalBody" class="modal-body p-0 d-flex">
+
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

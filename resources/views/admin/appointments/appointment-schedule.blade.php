@@ -2,6 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container-fluid welcome">
     <div class="row pt-3 px-3 d-flex justify-content-md-between justify-content-center align-items-center">
         <div class="col-md-5 col-12 fw-bold">
@@ -27,7 +28,7 @@
     <div class="row pt-0 px-3 pb-3 d-flex justify-content-md-evenly justify-content-center align-items-center">
         <div class="col-md-4 col-sm-6 col-12 mr-md-3 fw-bold">
             <p class="welcome_text mb-1">Seleccione Sede Confamiliar</p>
-            <select type="text" name="available_branchoffices" id="available_branchoffices" class="form-control"
+            <select type="text" name="available_branchoffices" id="availableBranchoffices" class="form-control"
                 data-area="{{$medicalarea->id_area}}" required>
                 <option value="" selected disabled hidden>Seleccione una sede</option>
                 @foreach ($branchoffices as $branchoffice)
@@ -39,7 +40,7 @@
         </div>
         <div class="col-md-4 col-sm-6 col-12 mr-md-3 fw-bold">
             <p class="welcome_text mb-1">Seleccione un médico</p>
-            <select type="text" name="available_medics" id="available_medics" class="form-control" required>
+            <select type="text" name="available_medics" id="availableMedics" class="form-control" required>
             </select>
         </div>
     </div>
@@ -87,6 +88,7 @@
             <div class="calendar"></div>
         </div>
 
+        <!--Ventana modal reitilizable-->
         <div class="modal fade day-schedule-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -97,42 +99,13 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div id="modalBody" class="modal-body p-0 d-flex">
-
-
-
-                        
+                    <div id="modalBody" class="modal-body p-0 d-flex">                       
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="newEventModal">
-            <h2>New Event</h2>
-
-            <input class="eventTitleInput" placeholder="Event Title" />
-
-            <button class="saveButton">Save</button>
-            <button class="cancelButton">Cancel</button>
-        </div>
-
-        <div class="deleteEventModal">
-            <h2>Event</h2>
-
-            <p class="eventText"></p>
-
-            <button class="deleteButton">Delete</button>
-            <button class="closeButton">Close</button>
-        </div>
-
-        <div class="modalBackDrop"></div>
-
     </div>
 </div>
-
-
-
-
 @stop
 
 

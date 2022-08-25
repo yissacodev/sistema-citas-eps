@@ -341,43 +341,43 @@ return [
             'can'   => 'admin'     
         ],
 
-        /*Usuarios */
+        /*----------------Usuarios-------------------*/
         [
             'text'    => 'Citas',
             'icon'    => 'fas fa-fw fa-calendar-day',
-            'can'   => 'admin.user',
+            'can'   => 'user',
             'submenu' => [
                 [
                     'text' => 'Nueva cita',
                     'icon'    => 'fas fa-fw fa-plus',
-                    'url'  => 'admin/user/appointments',
-                    'can'   => 'admin.user'      
+                    'url'  => 'user/appointments',
+                    'can'   => 'user'      
                 ],
                 [
                     'text' => 'Aplazar cita',
                     'icon'    => 'fas fa-fw fa-stopwatch-20',
-                    'url'  => 'admin/user/appointments/postpone',
-                    'can'   => 'admin.user'      
+                    'url'  => 'user/appointments/postpone',
+                    'can'   => 'user'      
                 ],
                 [
                     'text' => 'Cancelar cita',
                     'icon'    => 'fas fa-fw fa-times',
-                    'url'  => 'admin/user/appointments/cancel',
-                    'can'   => 'admin.user'      
+                    'url'  => 'user/appointments/cancel',
+                    'can'   => 'user'      
                 ],
                 [
                     'text' => 'Citas pendientes',
                     'icon_color' => 'yellow',
                     'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => 'admin/user/appointments/pending',
-                    'can'   => 'admin.user'      
+                    'url'  => 'user/appointments/pending',
+                    'can'   => 'user'      
                 ],
                 [
                     'text' => 'Citas perdidas',
                     'icon_color' => 'red',
                     'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => 'admin/user/appointments/losed',
-                    'can'   => 'admin.user'      
+                    'url'  => 'user/appointments/losed',
+                    'can'   => 'user'      
                 ],
                 
             ],
@@ -386,56 +386,57 @@ return [
         [   
             'text'    => 'Historial',
             'icon'    => 'fas fa-fw fa-history',
-            'url'  => 'admin/user/appointments/history',
-            'can'   => 'admin.user'      
+            'url'  => 'user/appointments/history',
+            'can'   => 'user'      
         ],       
     
         ['header' => 'AUTORIZACIONES',
-        'can'   => 'admin.user' ],
+        'can'   => 'user' ],
         [
             'text' => 'Verificar autorizaciones',
-            'url'  => 'admin/user/appointments/authorizations',
+            'url'  => 'user/appointments/authorizations',
             'icon' => 'fas fa-fw fa-user-check',
-            'can'   => 'admin.user' 
+            'can'   => 'user' 
         ],
+
 
         /*Gestion de citas medico */
         [
             'text'    => 'Citas',
             'icon'    => 'fas fa-fw fa-calendar-day',
-            'can'   => 'admin.doctor' ,
+            'can'   => 'medic' ,
             'submenu' => [
                 [
                     'text' => 'Nueva cita especialista',
                     'icon'    => 'fas fa-fw fa-plus',
-                    'url'  => 'admin/doctor/appointments',
-                    'can'   => 'admin.doctor'
+                    'url'  => 'medic/appointments',
+                    'can'   => 'medic'
                 ],
                 [
                     'text' => 'Aplazar cita',
                     'icon'    => 'fas fa-fw fa-stopwatch-20',
-                    'url'  => 'admin/doctor/appointments/list',
-                    'can'   => 'admin.doctor'
+                    'url'  => 'medic/appointments/list',
+                    'can'   => 'medic'
                 ],
                 [
                     'text' => 'Cancelar cita',
                     'icon'    => 'fas fa-fw fa-times',
-                    'url'  => 'admin/doctor/appointments/postpone',
-                    'can'   => 'admin.doctor'
+                    'url'  => 'medic/appointments/postpone',
+                    'can'   => 'medic'
                 ],
                 [
                     'text' => 'Citas pendientes',
                     'icon_color' => 'yellow',
                     'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => 'admin/user/appointments/pending',
-                    'can'   => 'admin.doctor'
+                    'url'  => 'medic/appointments/pending',
+                    'can'   => 'medic'
                 ],
                 [
                     'text' => 'Citas perdidas',
                     'icon_color' => 'red',
                     'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => 'admin/doctor/appointments/losed',
-                    'can'   => 'admin.doctor'
+                    'url'  => 'medic/appointments/losed',
+                    'can'   => 'medic'
                 ],
                 
             ],
@@ -444,8 +445,8 @@ return [
         [   
             'text'    => 'Historial',
             'icon'    => 'fas fa-fw fa-history',
-            'url'  => 'admin/doctor/appointments/history',
-            'can'   => 'admin.doctor'      
+            'url'  => 'medic/appointments/history',
+            'can'   => 'medic'      
         ],       
     
     ],
@@ -556,7 +557,7 @@ return [
             ],
         ],
         'Fullcalendar' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'css',

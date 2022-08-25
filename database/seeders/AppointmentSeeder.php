@@ -23,11 +23,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Revisión anual',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '1',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-29',
-                'appoint_end_date' => '2022-08-29',
                 'appoint_start_hour' => '08:30',
-                'appoint_end_hour' => '09:00'
             ],
             [
                 'id_appoint' => '2',
@@ -36,11 +33,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita rutinaria',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '1',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-29',
-                'appoint_end_date' => '2022-08-29',
                 'appoint_start_hour' => '09:00',
-                'appoint_end_hour' => '09:30'
             ],
             [
                 'id_appoint' => '3',
@@ -49,11 +43,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita remisión cardiología',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '1',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-29',
-                'appoint_end_date' => '2022-08-29',
                 'appoint_start_hour' => '09:30',
-                'appoint_end_hour' => '10:00'
             ],
             [
                 'id_appoint' => '4',
@@ -62,11 +53,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita remisión pruebas de sangre',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '2',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-29',
-                'appoint_end_date' => '2022-08-29',
                 'appoint_start_hour' => '10:00',
-                'appoint_end_hour' => '10:30',
             ],
             [
                 'id_appoint' => '12',
@@ -75,11 +63,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita remisión pruebas de sangre',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '2',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-28',
-                'appoint_end_date' => '2022-08-28',
                 'appoint_start_hour' => '11:30',
-                'appoint_end_hour' => '12:00',
             ],
             [
                 'id_appoint' => '15',
@@ -88,11 +73,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita remisión pruebas de sangre',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '2',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-28',
-                'appoint_end_date' => '2022-08-28',
                 'appoint_start_hour' => '01:00',
-                'appoint_end_hour' => '01:30',
             ],
             [
                 'id_appoint' => '16',
@@ -101,11 +83,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita remisión pruebas de sangre',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '2',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-28',
-                'appoint_end_date' => '2022-08-28',
                 'appoint_start_hour' => '01:30',
-                'appoint_end_hour' => '02:00',
             ],
             [
                 'id_appoint' => '11',
@@ -114,11 +93,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Cita remisión pruebas de sangre',
                 'desc_appoint' => 'Cita médica rutinaria',
                 'status_appoint' => '2',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-28',
-                'appoint_end_date' => '2022-08-28',
                 'appoint_start_hour' => '11:00',
-                'appoint_end_hour' => '11:30',
             ],
             [
                 'id_appoint' => '5',
@@ -127,11 +103,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Control endodoncia',
                 'desc_appoint' => 'Cita odontológica endodoncia',
                 'status_appoint' => '1',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-26',
-                'appoint_end_date' => '2022-08-26',
                 'appoint_start_hour' => '08:30',
-                'appoint_end_hour' => '09:00'
             ],
             [
                 'id_appoint' => '6',
@@ -140,11 +113,8 @@ class AppointmentSeeder extends Seeder
                 'title_appoint' => 'Tratamiento endodoncia',
                 'desc_appoint' => 'Cita odontológica tratamiento endodoncia',
                 'status_appoint' => '1',
-                'null_desc_appoint' => '',
                 'appoint_start_date' => '2022-08-26',
-                'appoint_end_date' => '2022-08-26',
                 'appoint_start_hour' => '09:00',
-                'appoint_end_hour' => '09:30'
             ],
 
         ];

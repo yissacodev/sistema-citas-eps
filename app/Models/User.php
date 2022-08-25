@@ -73,9 +73,13 @@ class User extends Authenticatable
         if($roles[0] == 'Admin'){
             return 'Administrador';
         }
-        else{
-            return $roles[0]; //Rol de ususario
+        else if($roles[0] == 'User'){
+            return 'Usuario';
         }
+        else if($roles[0] == 'Medic'){
+            return 'Médico';
+        }
+        
     }
 
     public function adminlte_profile_url(){

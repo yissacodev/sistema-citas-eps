@@ -14,39 +14,11 @@ use App\Models\Patient;
 
 Route::get('/', [HomeController::class, 'index']); 
 
-
-/*Rutas de usuario */
-Route::controller(AppointmentController::class)->middleware('can:admin.user')->prefix('user')->group(function(){
-    Route::get('appointments','index'); 
-    Route::get('appointments/register/{id}', 'register'); 
-    Route::get('appointments/list', 'list'); 
-    Route::get('appointments/postpone', 'list'); 
-    Route::get('appointments/cancel', 'list');
-    Route::get('appointments/pending', 'list');
-    Route::get('appointments/losed', 'list');
-    Route::get('appointments/history', 'list'); /*Historia de citas del paciente */
-    Route::get('appointments/authorizations', [AuthorizationsController::class, 'index']);
-});
-
-
-/*Rutas del doctor */
-Route::controller(AppointmentController::class)->middleware('can:admin.doctor')->prefix('doctor')->group(function(){
-    Route::get('appointments', 'index'); 
-    Route::get('appointments/schedule/{id}', 'schedule'); /* Calendario de citas */
-    Route::get('appointments/list', 'list'); /* Lista de citas */ /*Atender*/
-    Route::get('appointments/postpone', 'list');  /* Posponer una cita */
-    Route::get('appointments/pending', 'list'); /* Citas pendientes */
-    Route::get('appointments/losed', 'list'); /* Citas perdidas que ve el doctor*/
-    Route::get('history', 'list');  /* Buscar historias del paciente e  imprimir*/
-});
-
-
-
 /* Rutas del admin
     Ver una portada
     Sacar citas de todo tipo
     Ver citas de todos los usuarios por doctor
-    Aplazar citas "
+    Aplazar citas
     Cancelar citas de todos los usuarios
     Listar citasde todos los usuarios por doctor
     Ver, buscar e imprimir las historias clinicas por paciente
@@ -58,21 +30,22 @@ Route::controller(AppointmentController::class)->prefix('appointments')->group(f
     Route::get('/register/{id}', 'register');
     Route::get('/postpone',  'list');
     Route::get('/cancel',  'list');
-    Route::get('/userlist',  'list'); /* Primero se hace esta para ver si la de abajo son necesarias */
+    Route::get('/userlist',  'list');
     Route::get('/mediclist',  'list');
     Route::get('/authorizations', [AuthorizationsController::class, 'index']); /*Autorizaciones */
 
+    /*Rutas de ajax */
     Route::get('register/getmedics/{id}/{area}', 'getMedics')->name('admin.appoints.getmedics');
     Route::get('register/getdiary/{id}', 'getDiary')->name('admin.appoints.getdiary');
-    Route::get('getdays/{id}', 'getdays')->name('admin.appoints.getdays');
+    Route::get('register/getdays/{id}', 'getdays')->name('admin.appoints.getdays');
+    Route::post('register/create', 'create')->name('admin.appoints.create');
 });
 Route::get('history', [AppointmentController::class, 'list']); /*Historias clinicas por paciente */
 
 
 
 
-/* Rutas para registrar usuario Solo el administrador de todo el sistema puede  hacerlo */
-
+/* Rutas para registrar usuario. Solo el administrador de todo el sistema puede hacerlo*/
 Route::controller(PatientController::class)->prefix('patient')->group(function(){
     Route::get('', 'index')->name('admin.patients');
     Route::get('register', 'register')->name('admin.patients.register');
@@ -83,7 +56,7 @@ Route::controller(PatientController::class)->prefix('patient')->group(function()
     Route::put('edit/{id}', 'putEdit');
 });
 
-
+/* Rutas para registrar medico. Solo el administrador de todo el sistema puede hacerlo*/
 Route::controller(MedicController::class)->prefix('medic')->group(function(){
     Route::get('', 'index')->name('admin.medics');
     Route::get('register', 'register')->name('admin.medics.register');
@@ -98,6 +71,7 @@ Route::controller(MedicController::class)->prefix('medic')->group(function(){
     Route::get('getidentification/{idtype}/{idnum}', 'getidentification')->name('admin.medics.getidentification');
 });
 
+/* Rutas para registrar areas medicas. Solo el administrador de todo el sistema puede hacerlo*/
 Route::controller(MedicalAreaController::class)->prefix('specializations')->group(function(){
     Route::get('', 'index')->name('admin.specializations');
     Route::get('register', 'register')->name('admin.specializations.register');

@@ -27,7 +27,7 @@ class MedicSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => bcrypt($medic['identify_medic']),
                 'remember_token' => Str::random(10)
-            ])->assignRole('Doctor');
+            ])->assignRole('Medic');
         }
     }
 }
