@@ -52,7 +52,7 @@ $templateScheduleAppointInfo.innerHTML = `
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
-            <div class="card-form p-4">
+            <div class="card-form card-form--info-appoint p-4">
                 <h4 class="form-title mb-3">
                     <i class="fas fa-map-marker-alt"></i>
                     Información previa
@@ -89,7 +89,7 @@ $templateScheduleAppointInfo.innerHTML = `
                     <input type="hidden" name="hour">
                     <input type="hidden" name="status">
                     <div class="form-group text-center">
-                    <button id="appointConfirmBtn" class="btn btn-primary">Confirmar</button>
+                    <button id="appointConfirmBtn" class="btn btn-primary w-50">Confirmar</button>
                     </div>
                 </form>
                 </div>
@@ -150,8 +150,6 @@ function loadSchedule() {
         });
     });
 }
-
-
 
 function loadCalendar() {
     $calendarContainer.style.display = "block";
@@ -272,8 +270,6 @@ function loadCalendar() {
 }
 
 
-
-
 function initButtons() {
     document.querySelector(".next-btn").addEventListener("click", () => {
         nav++;
@@ -313,7 +309,7 @@ function openModal(eventForDay, dateString) {
     /*--Panel derecho de la ventana modal--*/
     const $scheduleInfoPanel = document.createElement("div");
     $scheduleInfoPanel.id = "scheduleInfoPanel";
-    $scheduleInfoPanel.classList.add("schedule_info", "d-none", "d-sm-flex", "flex-column", "justify-content-center", "align-items-center");
+    $scheduleInfoPanel.classList.add("schedule_info", "d-flex", "flex-column", "justify-content-center", "align-items-center");
     const $scheduleInstructions = document.importNode($templateScheduleInstructions.content, true);                        
                         
     let minutes = 0;
@@ -356,8 +352,7 @@ function openModal(eventForDay, dateString) {
                         $appointType = document.getElementById("appointType"),
                         $appointBranchOffice = document.getElementById("appointBranchOffice"),
                         $appointHour = document.getElementById("appointHour"),
-                        $appointDate = document.getElementById("appointDate"),
-                        $appointConfirmBtn = document.getElementById("appointConfirmBtn");
+                        $appointDate = document.getElementById("appointDate");
 
                     const $selectedMedic = document.getElementById("availableMedics");
                     $appointMedic.innerHTML = $selectedMedic.options[$selectedMedic.selectedIndex].innerText;
@@ -373,6 +368,7 @@ function openModal(eventForDay, dateString) {
                     const $confirmButton = document.getElementById("appointConfirmBtn");
                     $confirmButton.addEventListener('click', (e) => {
                         e.preventDefault();
+
                         /*Poner la dirección actual en el action del form*/
                         document.forms.frm_appoint_create.action = location.href.split(/[0-9]/ig)[0] + 'create';
 
@@ -385,9 +381,21 @@ function openModal(eventForDay, dateString) {
                         formAppointCreate.hour.value = $scheduleHour.dataset.hour;
                         formAppointCreate.status.value = '1';
 
-
-                        console.log(document.forms.frm_appoint_create.action);
-                        formAppointCreate.submit();
+                        Swal.fire({
+                            scrollbarPadding: false,
+                            title: "¿La información suministrada es correcta?",
+                            text: "Al confirmarse la solicitud su cita será asignada",
+                            icon: "info",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Confirmar",
+                            cancelButtonText: "Cancelar",
+                        }).then((result) => {
+                            if (result.value) {
+                                formAppointCreate.submit();
+                            }
+                        });
                     })
                 })
             }

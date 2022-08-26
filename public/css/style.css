@@ -320,12 +320,18 @@
     
 }
 
+.card-form--info-appoint{
+    font-size: clamp(0.9em, 2vw, 1em)
+}
+
 .table-row-options{
     width:auto;
 }
 
 
-
+.swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel{
+    width: auto !important;
+}
 
 /*--------------------------------------------------------------*/
 @media screen and (max-width: 768px){

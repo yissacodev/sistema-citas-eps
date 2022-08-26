@@ -199,7 +199,7 @@ button {
 }
 
 .schedule_hour {
-    font-size: 1.2em;
+    font-size: clamp(0.9em, 2vw, 1.2em);
     text-align: center;
     padding: 0.3em;
     transition: background 0.3s ease-in;
