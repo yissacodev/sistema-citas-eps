@@ -64,10 +64,10 @@ $(function () {
     let $department = document.getElementById("department");
     let $municipalityList = document.getElementById("municipality");
     let $fragment = document.createDocumentFragment();
-
+    let url = location.pathname.split("/")[2];
     $department.addEventListener("change", (e) => {
         $municipalityList.innerHTML = "";
-        fetch("getmunicipalities/" + $department.value)
+        fetch(url + "/getmunicipalities/" + $department.value)
             .then((res) => {
                 console.log(res);
                 return res.ok ? res.json() : Promise.reject(res);

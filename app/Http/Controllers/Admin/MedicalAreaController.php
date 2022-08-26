@@ -34,13 +34,9 @@ class MedicalAreaController extends Controller
         $icon = $request->file('icon')->store('public/areaicons');
         $url = Storage::url($icon);
         $medicararea->icon_area =    $url;
-        // $request->file('file')->store('');
 
         $medicararea->save();
 
         return view('admin.medical-areas.medical-areas');
-
     }
-
-    /*Métodos de editar y eliminar con sus respectivas condiciones  */
 }

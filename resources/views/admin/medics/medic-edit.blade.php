@@ -154,6 +154,16 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group col-6 col-md-4">
+            <label for="desc">Jornada de trabajo</label>
+            <select type="text" name="workday" id="workday" class="form-control" required>
+                <option value="">Completa</option>
+                <option value="">Mañana</option>
+                <option value="">Tarde</option>
+            </select>
+            <div class="valid-feedback">Campo correcto</div>
+            <div class="invalid-feedback">Campo incorrecto</div>
+        </div>
     </div>
 
     <div class="row">
@@ -181,33 +191,9 @@
 <link rel="stylesheet" href="/css/style.css">
 @stop
 
+@section('js')
 
+<script type="text/javascript" src="/js/validate.js"></script>
+@livewireScripts
+@stop
 
-    @section('js')
-
-    <script type="text/javascript" src="/js/validate.js"></script>
-    @livewireScripts
-    @stop
-
-
-
-    {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header modal-header__color">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Nuevo paciente</h5>
-                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body d-flex justify-content-center">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}

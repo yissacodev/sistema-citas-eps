@@ -188,7 +188,6 @@ class MedicController extends Controller
 			$medic->delete();
             return redirect()->back()->with('delete', 'ok');
         }
-
     }
 
     public function getMunicipalities($id){
@@ -206,6 +205,7 @@ class MedicController extends Controller
         echo json_encode($branchoffices);
     }
 
+    /*Comprueba si un medico ya existe*/
     public function getidentification($idtype, $idnum){
         $hasMedic = DB::table('medics')
                     ->where('idtype', '=', $idtype)
@@ -213,5 +213,4 @@ class MedicController extends Controller
                     ->get();
         echo json_encode($hasMedic);
     }
-    
 }

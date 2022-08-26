@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-// namespace App\Http\Livewire;
-
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\IdType;

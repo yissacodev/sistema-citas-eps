@@ -48,9 +48,6 @@ class AppointmentController extends Controller
         echo json_encode($medics);
     }
 
-    public function list(){
-        return view('admin.list');
-    }
 
     public function getDiary($idmedic){
         $diary = Medic::join('appointments', 'appointments.medic', '=', 'medics.id_medic')
@@ -92,6 +89,10 @@ class AppointmentController extends Controller
         
 
         return redirect()->back();
+    }
+
+    public function list(){
+        return view('admin.list');
     }
 }
 

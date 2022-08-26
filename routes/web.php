@@ -26,7 +26,6 @@ Route::get('/user/profile', [UserProfileController::class, 'show'])->name('profi
 Route::middleware(['auth:sanctum', 'verified'])->get('', [HomeController::class, 'index'])->name('dashboard');
 
 
-
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');

@@ -2,6 +2,7 @@ let nav = 0;
 let clicked = null;
 let events;
 
+const $calendarContainer = document.querySelector(".calendar__container");
 const calendar = document.querySelector(".calendar");
 const weekdays = [
     "Sunday",
@@ -91,7 +92,6 @@ $templateScheduleAppointInfo.innerHTML = `
                     <button id="appointConfirmBtn" class="btn btn-primary">Confirmar</button>
                     </div>
                 </form>
-                       
                 </div>
 
 
@@ -135,6 +135,7 @@ function loadSchedule() {
     });
 
     $availableMedics.addEventListener("change", () => {
+        
         fetch("getdiary/" + $availableMedics.value)
         .then((res) => {
             console.log(res);
@@ -142,17 +143,18 @@ function loadSchedule() {
         })
         .then((json) => {
             console.log(json);
+            nav = 0;
             events = json;
-            load();
-            initButtons();
+            loadCalendar();
+            
         });
     });
 }
 
 
 
-function load() {
-    
+function loadCalendar() {
+    $calendarContainer.style.display = "block";
     const dt = new Date();
 
     if (nav !== 0) {
@@ -275,12 +277,16 @@ function load() {
 function initButtons() {
     document.querySelector(".next-btn").addEventListener("click", () => {
         nav++;
-        load();
+        loadCalendar();
     });
 
     document.querySelector(".back-btn").addEventListener("click", () => {
         nav--;
-        load();
+        loadCalendar();
+    });
+    document.querySelector(".center-btn").addEventListener("click", () => {
+        nav = 0;
+        loadCalendar();
     });
 }
 
@@ -401,5 +407,6 @@ function openModal(eventForDay, dateString) {
 
 
 /*Cargar todo el componente */
+initButtons();
 loadSchedule();
 

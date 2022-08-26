@@ -9,6 +9,9 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    /* Sección, ejercicio oculto dentro de los componentes
+    Esto no se usa, pero es necesario
+    */
     public function index(){
         return view('admin.user');
     }

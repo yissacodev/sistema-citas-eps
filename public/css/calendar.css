@@ -4,6 +4,7 @@
 }
 
 .calendar__container {
+    display: none;
     width: 100%;
 }
 

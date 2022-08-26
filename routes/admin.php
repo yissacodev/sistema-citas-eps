@@ -25,7 +25,7 @@ Route::get('/', [HomeController::class, 'index']);
     autorizar citas
 */
 
-Route::controller(AppointmentController::class)->prefix('appointments')->group(function(){
+Route::controller(AppointmentController::class)->middleware('can:admin')->prefix('appointments')->group(function(){
     Route::get('',  'index'); 
     Route::get('/register/{id}', 'register');
     Route::get('/postpone',  'list');
@@ -57,7 +57,7 @@ Route::controller(PatientController::class)->prefix('patient')->group(function()
 });
 
 /* Rutas para registrar medico. Solo el administrador de todo el sistema puede hacerlo*/
-Route::controller(MedicController::class)->prefix('medic')->group(function(){
+Route::controller(MedicController::class)->middleware('can:admin')->prefix('medic')->group(function(){
     Route::get('', 'index')->name('admin.medics');
     Route::get('register', 'register')->name('admin.medics.register');
     Route::post('create', 'create')->name('admin.medic.create');
@@ -72,7 +72,7 @@ Route::controller(MedicController::class)->prefix('medic')->group(function(){
 });
 
 /* Rutas para registrar areas medicas. Solo el administrador de todo el sistema puede hacerlo*/
-Route::controller(MedicalAreaController::class)->prefix('specializations')->group(function(){
+Route::controller(MedicalAreaController::class)->middleware('can:admin')->prefix('specializations')->group(function(){
     Route::get('', 'index')->name('admin.specializations');
     Route::get('register', 'register')->name('admin.specializations.register');
     Route::post('create', 'create')->name('admin.specializations.create');

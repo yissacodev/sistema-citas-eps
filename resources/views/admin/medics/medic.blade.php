@@ -185,6 +185,18 @@
                                     <div class="valid-feedback">Campo correcto</div>
                                     <div class="invalid-feedback">Campo incorrecto</div>
                                 </div>
+                                <div class="form-group col-6 col-md-4">
+                                    <label for="desc">Jornada de trabajo</label>
+                                    <select type="text" name="workday" id="workday" class="form-control" required>
+                                        <select type="text" name="workday" id="workday" class="form-control" required>
+                                            <option value="">Completa</option>
+                                            <option value="">Mañana</option>
+                                            <option value="">Tarde</option>
+                                        </select>
+                                    </select>
+                                    <div class="valid-feedback">Campo correcto</div>
+                                    <div class="invalid-feedback">Campo incorrecto</div>
+                                </div>
                             </div>
 
                             <div class="row">
