@@ -370,7 +370,7 @@ function openModal(eventForDay, dateString) {
                         e.preventDefault();
 
                         /*Poner la dirección actual en el action del form*/
-                        document.forms.frm_appoint_create.action = location.href.split(/[0-9]/ig)[0] + 'create';
+                        document.forms.frm_appoint_create.action = location.origin + location.pathname.split(/[0-9]/ig)[0] + 'create';
 
                         /*Preparar los inputs del formulario para ser enviados */
                         const formAppointCreate = document.forms.frm_appoint_create;
