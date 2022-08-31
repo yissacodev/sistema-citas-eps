@@ -74,7 +74,8 @@ class AppointmentController extends Controller
 
             
             $appointment = new Appointment;
-            $appointment->patient = auth()->id();
+            $appointment->patient = Patient::where('id_user', auth()->id())
+                                            ->select('id_patient')->first()->id_patient;
             $appointment->medic = $request->idmedic;
             $appointment->status_appoint = $request->status;
             $appointment->appoint_start_date = $request->date;
@@ -92,17 +93,19 @@ class AppointmentController extends Controller
     }
 
     public function list(){
+        $id_patient = Patient::where('id_user', auth()->id())
+                                ->select('id_patient')->first();
+        $appointments = $this->getAppointments($id_patient->id_patient);
 
-        $id_patient = DB::select('SELECT patients.id_patient FROM patients WHERE id_user = ?', [auth()->id()]);
-        //$appointments = $this->getAppointments($id_patient->id_patient);
-
-        return $id_patient;
-        // return view('admin.users.list');
+        //return $appointments;
+        return view('admin.users.list')
+                ->with('appointments', $appointments);
     }
 
     public function getAppointments($id_patient){
         /*Distinct hace tomar el último elemento del array devuelto en consulta*/
         $appointments = DB::select('SELECT
+                                    appointments.id_appoint,
                                     medical_areas.name_area,
                                     branch_offices.name_branch_office,
                                     medics.name_medic,
@@ -118,13 +121,18 @@ class AppointmentController extends Controller
                                     JOIN medical_areas ON medical_areas.id_area=doctor_offices.medical_area
                                     JOIN branch_offices ON branch_offices.id_branch=doctor_offices.branch_office
                                     JOIN patients ON patients.id_patient=appointments.patient
-                                    WHERE patients.id_patient = ?', [$id_patient]);
+                                    WHERE patients.id_patient = ? AND appointments.status_appoint = ?', [$id_patient, 1]);
         return $appointments;
     }
 
-    public function cancelAppointments($id_cita)
+    public function cancelAppointment(Request $request, $id_appoint)
     {
-        
+        $appointment = Appointment::findOrFail($id_appoint);
+
+        $appointment->status_appoint = 0;
+        $appointment->save();
+
+        return redirect()->back();
     }
 }
 

@@ -12,5 +12,6 @@ class Appointment extends Model
         'appoint_start_date' => 'datetime:HH:mm'
     ];
 
-    
+    protected $primaryKey = 'id_appoint';
+
 }

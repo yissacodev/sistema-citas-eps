@@ -30,5 +30,8 @@ Route::controller(AppointmentController::class)->middleware('can:user')->prefix(
     Route::get('register/getdiary/{id}', 'getDiary')->name('user.appoints.getdiary');
     Route::get('getdays/{id}', 'getdays')->name('user.appoints.getdays');
     Route::post('register/create', 'create')->name('user.appoints.create');
+
+    // ruta cancelar cita
+    Route::put('delete/{id}', 'cancelAppointment')->name('user.appoints.delete');
 });
 
