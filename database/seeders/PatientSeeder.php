@@ -21,6 +21,7 @@ class PatientSeeder extends Seeder
         $patients = Patient::factory(20)->create();   
         foreach ($patients as $patient){
             User::create([
+                'id' => $patient['id_user'],
                 'name' => $patient['name_patient'],
                 'email' => $patient['email_patient'],
                 'email_verified_at' => now(),

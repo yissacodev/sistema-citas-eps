@@ -23,10 +23,14 @@ class MedicalAreasIndex extends Component
 
     public function render()
     {
-        $medicalareas = MedicalArea::where('id_area', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('name_area', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('specialist_area', 'LIKE', '%' . $this->search . '%')
-            ->paginate();
+        $medicalareas = MedicalArea::where(function($query) {
+        return $query->where('id_area', 'like', '%'.$this->search.'%')
+            ->orWhere('name_area', 'like', '%'.$this->search.'%')
+            ->orWhere('specialist_area', 'like', '%'.$this->search.'%');
+        })
+        ->where('status', '!=', 0)
+        ->paginate();
+
         return view('livewire.admin.medical-areas-index', compact('medicalareas'));
     }
 }

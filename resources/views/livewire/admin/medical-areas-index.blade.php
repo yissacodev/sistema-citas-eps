@@ -14,8 +14,7 @@
                         <th>Nombre</th>
                         <th>Especialista</th>
                         <th>Descripción</th>
-                  
-        
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-body">
@@ -63,6 +62,16 @@
                             </form>
                             
                         </td> --}}
+                        <td>
+                            <form action="specializations/delete/{{$medicalarea->id_area}}" method="POST" style="display:inline" class="delete_form" name="delete_form">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <button class="btn btn-danger button-action" type="submit"  title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                    <div class="bt-tooltip">Eliminar</div>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

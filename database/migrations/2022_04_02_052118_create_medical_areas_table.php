@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('desc_area');
             $table->string('color_area', '30');
             $table->string('icon_area', '100');
+            $table->string('status');
             $table->timestamps();
         });
     }

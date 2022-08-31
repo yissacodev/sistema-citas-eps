@@ -33,8 +33,19 @@ class MedicalAreaController extends Controller
         ]);
         $icon = $request->file('icon')->store('public/areaicons');
         $url = Storage::url($icon);
-        $medicararea->icon_area =    $url;
+        $medicararea->icon_area = $url;
+        $medicararea->status = 1;
 
+        $medicararea->save();
+
+        return view('admin.medical-areas.medical-areas');
+    }
+
+    public function putDelete(Request $request, $id_area)
+    {
+        $medicararea = MedicalArea::findOrFail($id_area);
+
+        $medicararea->status = 0;
         $medicararea->save();
 
         return view('admin.medical-areas.medical-areas');

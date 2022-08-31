@@ -76,6 +76,7 @@ Route::controller(MedicalAreaController::class)->middleware('can:admin')->prefix
     Route::get('', 'index')->name('admin.specializations');
     Route::get('register', 'register')->name('admin.specializations.register');
     Route::post('create', 'create')->name('admin.specializations.create');
+    Route::put('delete/{id}', 'putDelete')->name('admin.specializations.delete');
 });
 
 

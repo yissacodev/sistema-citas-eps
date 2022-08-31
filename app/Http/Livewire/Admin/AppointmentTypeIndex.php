@@ -22,8 +22,15 @@ class AppointmentTypeIndex extends Component
 
     public function render()
     {
-        $medicalareas = MedicalArea::where('name_area', 'LIKE', '%' . $this->search . '%')
+        /*$medicalareas = MedicalArea::where('name_area', 'LIKE', '%' . $this->search . '%')
             ->paginate();
+        */
+        $medicalareas = MedicalArea::where(function($query) {
+            return $query->where('name_area', 'like', '%'.$this->search.'%');
+        })
+        ->where('status', '!=', 0)
+        ->paginate();
+
         return view('livewire.admin.appointment-type-index', compact('medicalareas'));
     }
 }

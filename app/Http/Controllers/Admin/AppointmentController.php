@@ -92,7 +92,39 @@ class AppointmentController extends Controller
     }
 
     public function list(){
-        return view('admin.list');
+
+        $id_patient = DB::select('SELECT patients.id_patient FROM patients WHERE id_user = ?', [auth()->id()]);
+        //$appointments = $this->getAppointments($id_patient->id_patient);
+
+        return $id_patient;
+        // return view('admin.users.list');
+    }
+
+    public function getAppointments($id_patient){
+        /*Distinct hace tomar el último elemento del array devuelto en consulta*/
+        $appointments = DB::select('SELECT
+                                    medical_areas.name_area,
+                                    branch_offices.name_branch_office,
+                                    medics.name_medic,
+                                    medics.last_medic,
+                                    doctor_offices.num_office,
+                                    appointments.appoint_start_date,
+                                    appointments.appoint_start_hour,
+                                    appointments.status_appoint
+                                    FROM
+                                    appointments
+                                    JOIN medics ON medics.id_medic=appointments.medic
+                                    JOIN doctor_offices ON doctor_offices.id_office=medics.eps_doctor_office
+                                    JOIN medical_areas ON medical_areas.id_area=doctor_offices.medical_area
+                                    JOIN branch_offices ON branch_offices.id_branch=doctor_offices.branch_office
+                                    JOIN patients ON patients.id_patient=appointments.patient
+                                    WHERE patients.id_patient = ?', [$id_patient]);
+        return $appointments;
+    }
+
+    public function cancelAppointments($id_cita)
+    {
+        
     }
 }
 
