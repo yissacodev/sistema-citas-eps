@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class AuthorizationsController extends Controller
 {
     public function index(){
-        return view('admin.authorization');
+        return view('admin.users.authorization');
     }
 }

@@ -6,7 +6,7 @@
     <div class="row p-3">
         <div class="col fw-bold">
             <h2 class="welcome_title">Autorizaciones</h2>
-            <p class="welcome_text">Lista de citas por autorizar en el caso del administrador, tarjetas de citas para el usuario</p>
+            <p class="welcome_text">Sección en desarrollo</p>
         </div>
     </div>
 </div>

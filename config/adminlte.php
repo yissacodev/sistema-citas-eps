@@ -354,31 +354,11 @@ return [
                     'can'   => 'user'      
                 ],
                 [
-                    'text' => 'Aplazar cita',
-                    'icon'    => 'fas fa-fw fa-stopwatch-20',
-                    'url'  => 'user/appointments/postpone',
-                    'can'   => 'user'      
-                ],
-                [
                     'text' => 'Cancelar cita',
                     'icon'    => 'fas fa-fw fa-times',
                     'url'  => 'user/appointments/cancel',
                     'can'   => 'user'      
-                ],
-                [
-                    'text' => 'Citas pendientes',
-                    'icon_color' => 'yellow',
-                    'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => 'user/appointments/pending',
-                    'can'   => 'user'      
-                ],
-                [
-                    'text' => 'Citas perdidas',
-                    'icon_color' => 'red',
-                    'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => 'user/appointments/losed',
-                    'can'   => 'user'      
-                ],
+                ]
                 
             ],
             

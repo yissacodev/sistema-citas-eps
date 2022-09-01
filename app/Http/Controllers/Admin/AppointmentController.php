@@ -121,7 +121,8 @@ class AppointmentController extends Controller
                                     JOIN medical_areas ON medical_areas.id_area=doctor_offices.medical_area
                                     JOIN branch_offices ON branch_offices.id_branch=doctor_offices.branch_office
                                     JOIN patients ON patients.id_patient=appointments.patient
-                                    WHERE patients.id_patient = ? AND appointments.status_appoint = ?', [$id_patient, 1]);
+                                    WHERE patients.id_patient = ? AND appointments.status_appoint = ?
+                                    ORDER BY 7 DESC', [$id_patient, 1]);
         return $appointments;
     }
 
@@ -132,8 +133,46 @@ class AppointmentController extends Controller
         $appointment->status_appoint = 0;
         $appointment->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'ok');
     }
+
+    public function history()
+    {
+        $id_patient = Patient::where('id_user', auth()->id())
+                                ->select('id_patient')->first();
+        $appointments = $this->getAllAppointments($id_patient->id_patient);
+
+        //return $appointments;
+        return view('admin.users.history')
+                ->with('appointments', $appointments);
+    }
+
+    public function getAllAppointments($id_patient){
+        /*Distinct hace tomar el último elemento del array devuelto en consulta*/
+        $appointments = DB::select('SELECT
+                                    appointments.id_appoint,
+                                    medical_areas.name_area,
+                                    branch_offices.name_branch_office,
+                                    branch_offices.eps_branch_address,
+                                    medics.name_medic,
+                                    medics.last_medic,
+                                    doctor_offices.num_office,
+                                    appointments.appoint_start_date,
+                                    appointments.appoint_start_hour,
+                                    appointments.status_appoint
+                                    FROM
+                                    appointments
+                                    JOIN medics ON medics.id_medic=appointments.medic
+                                    JOIN doctor_offices ON doctor_offices.id_office=medics.eps_doctor_office
+                                    JOIN medical_areas ON medical_areas.id_area=doctor_offices.medical_area
+                                    JOIN branch_offices ON branch_offices.id_branch=doctor_offices.branch_office
+                                    JOIN patients ON patients.id_patient=appointments.patient
+                                    WHERE patients.id_patient = ?
+                                    ORDER BY 8 DESC', [$id_patient]);
+        return $appointments;
+    }
+
+
 }
 
 /*

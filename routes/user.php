@@ -22,7 +22,7 @@ Route::controller(AppointmentController::class)->middleware('can:user')->prefix(
     Route::get('/cancel', 'list');
     Route::get('/pending', 'list');
     Route::get('/losed', 'list');
-    Route::get('/history', 'list');
+    Route::get('/history', 'history');
     Route::get('/authorizations', [AuthorizationsController::class, 'index']);
 
     /*Rutas de ajax */
