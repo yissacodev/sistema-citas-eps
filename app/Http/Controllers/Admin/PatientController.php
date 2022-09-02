@@ -74,20 +74,23 @@ class PatientController extends Controller
             $patient->municipality_patient = $mun_found->id_municipality;
 
             $patient->neigh_patient        = $request->neigh;
-            $patient->id_user = '200';
             $patient->home_address_patient = $request->address;
             $patient->email_patient        = $request->email;
             $patient->cel_patient          = $request->cel;
             $patient->tel_patient          = $request->tel;
             $patient->status_patient       = true;
             $patient->desc_patient         = $request->desc;
-            $patient->save();
-
+            
             $user = new User();
             $user->name = strtolower($request->name);
             $user->email = $request->email;
             $user->password = bcrypt($request->idnumber); /*Pass N° de identificación */
             $user->save();
+            
+            
+            $patient->id_user = $user->id;
+
+            $patient->save();
 
             $user->roles()->sync('2');
             //notify()->success('Laravel Notify is awesome!'); /*Notificacion de aprobación */

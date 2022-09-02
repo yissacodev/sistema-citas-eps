@@ -24,23 +24,23 @@
     <h4>Información básica</h4>
 
     <div class="row">
-        <div class="form-group col-3">
+        <div class="form-group col-12 col-md-6">
             <label for="namespecial">Nombre de especialización</label>
             <input type="text" name="namespecial" id="namespecial" class="form-control" 
             pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
         </div>
-        <div class="form-group col-3">
+        <div class="form-group col-12 col-md-6">
             <label for="specialist">Especialista</label>
             <input type="text" name="specialist" id="specialist" class="form-control" 
             pattern="^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$" required>
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-1">
+        <div class="form-group col-12 col-md-1">
             <label for="color">Color</label>
             <input type="color" name="color" id="color" class="form-control" required>
         </div>
-        <div class="form-group col-5">
+        <div class="form-group col-12 col-md-3">
             <label for="icon">Icono</label>
             <input type="file" name="icon" id="icon" class="form-control" accept="image/*" required><br>
             @error('icon')
