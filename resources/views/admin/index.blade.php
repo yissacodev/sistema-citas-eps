@@ -22,7 +22,7 @@
     Debe Recorrerse en un ciclo
 -->
 
-<div class="row row-cols-2 d-flex flex-column flex-md-row mb-3 cite-notify area-color__gnral">
+<!-- <div class="row row-cols-2 d-flex flex-column flex-md-row mb-3 cite-notify area-color__gnral">
     <div class="col-12 col-md-3 mb-1">
         <div class="cite_header">
             Proxima cita
@@ -77,7 +77,7 @@
         </div>
         
     </div>
-</div>
+</div> -->
 
 {{-- <div class="row row-cols-2 d-flex flex-column flex-md-row mb-3 cite-notify area-color__psi">
     <div class="col-12 col-md-3 mb-1">

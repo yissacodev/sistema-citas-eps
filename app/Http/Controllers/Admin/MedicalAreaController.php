@@ -48,6 +48,6 @@ class MedicalAreaController extends Controller
         $medicararea->status = 0;
         $medicararea->save();
 
-        return view('admin.medical-areas.medical-areas');
+        return redirect()->back()->with('delete', 'ok');
     }
 }

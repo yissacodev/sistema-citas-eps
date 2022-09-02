@@ -77,7 +77,7 @@
         <script>
             Swal.fire(
                 'Eliminado!',
-                'El médico ha sido borrado de la base de datos.',
+                'Se ha eliminado tu cita medica.',
                 'success'
             )
         </script>

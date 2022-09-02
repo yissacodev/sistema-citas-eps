@@ -10,9 +10,9 @@
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
-                {{ __('Usted ha activado la autenicación de dos factores') }}
+                {{ __('Usted ha activado la autenticación de dos factores') }}
             @else
-                {{ __('Usted no ha activado la autenicación de dos factores.') }}
+                {{ __('Usted no ha activado la autenticación de dos factores.') }}
             @endif
         </h3>
 

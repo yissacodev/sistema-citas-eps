@@ -88,3 +88,19 @@
         @endif
     </div>
 </div>
+
+@section('js')
+@livewireScripts
+
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+            'Se elimino con exito!',
+            'Area medica eliminada con exito.',
+            'danger'
+        )
+</script>
+@endif
+<script type="text/javascript" src="/js/functions.js"></script>
+
+@stop
