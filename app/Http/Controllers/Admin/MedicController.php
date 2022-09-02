@@ -183,9 +183,9 @@ class MedicController extends Controller
         $medic = Medic::findOrFail($id_medic);
         
         if($medic->id_medic){
-			$user = User::where('email', $medic->email_medic)->first();
-            $user->delete();
-			$medic->delete();
+			$medic->status_medic = '0';
+            $medic->save();
+
             return redirect()->back()->with('delete', 'ok');
         }
     }

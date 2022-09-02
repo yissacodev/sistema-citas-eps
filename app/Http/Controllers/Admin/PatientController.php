@@ -163,13 +163,10 @@ class PatientController extends Controller
         $patient = Patient::findOrFail($id_patient);
         
         if($patient->id_patient){
-			$user = User::where('email', $patient->email_patient)->first();
-            $user->delete();
-			$patient->delete();
-            Cache::flush();
+            $patient->status_patient = 0;
+            $patient->save();
 
             return redirect()->back()->with('delete', 'ok');
-            // return view('admin.patients.patients');
         }
     }
 }

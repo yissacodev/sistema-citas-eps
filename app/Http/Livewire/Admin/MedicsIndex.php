@@ -21,11 +21,15 @@ class MedicsIndex extends Component
 
     public function render()
     {
-        $medics = Medic::where('name_medic', 'LIKE' , '%' . $this->search . '%')
+        $medics = Medic::where(function($query) {
+            return $query->where('name_medic', 'LIKE' , '%' . $this->search . '%')
                         ->orWhere('identify_medic', 'LIKE' , '%' . $this->search . '%')
                         ->orWhere('last_medic', 'LIKE' , '%' . $this->search . '%')
-                        ->orWhere('email_medic', 'LIKE' , '%' . $this->search . '%')
-                        ->paginate();
+                        ->orWhere('email_medic', 'LIKE' , '%' . $this->search . '%');
+        })
+        ->where('status_medic', '!=', '0')
+        ->paginate();
+
         return view('livewire.admin.medics-index', compact('medics'));
     }
 }

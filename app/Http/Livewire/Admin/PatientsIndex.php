@@ -21,12 +21,15 @@ class PatientsIndex extends Component
 
     public function render()
     {
-        $patients = Patient::where('name_patient', 'LIKE' , '%' . $this->search . '%')
+        $patients = Patient::where(function($query) {
+            return $query->where('name_patient', 'LIKE' , '%' . $this->search . '%')
                         ->orWhere('identify_patient', 'LIKE' , '%' . $this->search . '%')
                         ->orWhere('email_patient', 'LIKE' , '%' . $this->search . '%')
-                        ->orWhere('last_patient', 'LIKE' , '%' . $this->search . '%')
-                        // ->orWhere('last_patient', 'LIKE' , '%' . $this->search . '%')
-                        ->paginate();
+                        ->orWhere('last_patient', 'LIKE' , '%' . $this->search . '%');
+        })
+        ->where('status_patient', '!=', 0)
+        ->paginate();
+
         return view('livewire.admin.patients-index', compact('patients'));
     }
 }
