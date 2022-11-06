@@ -12,7 +12,6 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        {{-- <link rel="stylesheet" href="{{ mix('css/aesthetic_conf.css') }}"> --}}
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
